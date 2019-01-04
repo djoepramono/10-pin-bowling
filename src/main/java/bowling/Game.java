@@ -8,8 +8,6 @@ import bowling.model.Frame;
 public class Game {
 
     // Stream.Builder<Bowl> bowler = Stream.builder();
-    Stream<Bowl> bowls;
-    Stream<String> temp;
     Stream<Frame> frames;
     Integer bowlLimit;
     Bowl initialBowl = new Bowl("u");
@@ -20,12 +18,17 @@ public class Game {
     }
 
     public void process(Bowl currentBowl) {
-        temp = Stream.iterate(initialBowl, ignored -> currentBowl)
-            .map(bowl -> {System.out.println(bowl.display); return bowl.display;})
+        Frame frame = new Frame();
+        Stream<Bowl> frameBowls = Stream.iterate(initialBowl, ignored -> currentBowl)
+            .map(bowl -> { addBowltoFrame(frame, currentBowl); return bowl;} )
             // .limit(bowlLimit)
             ;
         // bowls.forEach(bowl -> System.out.println(bowl.display));
         // frames.limit(bowlLimit).forEach(System.out::println);
+    }
+
+    public void addBowltoFrame(Frame frame, Bowl bowl) {
+        frame.bowls.add(bowl);
     }
 
 }
