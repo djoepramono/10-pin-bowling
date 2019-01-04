@@ -1,0 +1,9 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = 'bowling.App'
+
+jar {
+    baseName = 'bowling'
+    version = '0.1.0'
+}
