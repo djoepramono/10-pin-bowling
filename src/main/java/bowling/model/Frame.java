@@ -6,8 +6,8 @@ import java.util.List;
 
 public class Frame {
     public List<Bowl> bowls = new ArrayList<Bowl>();
-    private Integer maxScore = 10;
-    private Integer score;
+    public Integer maxScore = 10;
+    public Integer score;
 
     public Frame(List<Bowl> bowls) {
         this.bowls = bowls;

@@ -3,10 +3,11 @@ package bowling;
 // import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
-// import java.util.stream.Collectors;
+import java.util.stream.Collectors;
 // import bowling.model.Score;
 import bowling.model.Bowl;
 // import bowling.model.Frame;
+import bowling.helper.AppException;
 
 import java.util.stream.Stream;
 
@@ -16,12 +17,27 @@ public class App {
 
         Game game = new Game();
 
-        List<Bowl> bowls = List.of(
-           new Bowl("1"),
-           new Bowl("2"),
-           new Bowl("X"),
-           new Bowl("3")
-        );
-        bowls.forEach(bowl -> game.process(bowl));
+        String[] entries = {"1","3","d","9"};
+
+        for(int i=0; i < entries.length; i++){
+            if (validateStringEntry(entries[i])) {
+                game.process(entries[i]);
+            } else
+            {
+                System.out.println("The entry " + entries[i] + " is not a valid string");
+                break;
+            }
+        }
+
+        // List<Bowl> bowls = input.stream()
+        //     .map(s -> { return new Bowl(s); })
+        //     .collect(Collectors.toList());
+        // bowls.forEach(bowl -> game.process(bowl));
+
+    }
+
+    private static Boolean validateStringEntry(String entry) {
+        // this is a string match you don't need `/ /g`
+        return entry.matches("^[0-9|x|\\/|-]$");
     }
 }
