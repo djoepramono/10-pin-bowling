@@ -9,7 +9,9 @@ public class Frame {
     private Integer maxScore = 10;
     private Integer score;
 
-    public Frame() {}
+    public Frame(List<Bowl> bowls) {
+        this.bowls = bowls;
+    }
 
     public void addBowl(Bowl bowl) {
         this.bowls.add(bowl);

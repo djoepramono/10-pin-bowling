@@ -13,14 +13,15 @@ import java.util.stream.Stream;
 public class App {
     public static void main(String... args) {
         System.out.println("hello");
-                
+
         Game game = new Game();
 
         List<Bowl> bowls = List.of(
            new Bowl("1"),
            new Bowl("2"),
+           new Bowl("X"),
            new Bowl("3")
         );
-        bowls.forEach(bowl -> game.process(bowl));        
+        bowls.forEach(bowl -> game.process(bowl));
     }
 }
