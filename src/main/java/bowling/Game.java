@@ -23,31 +23,31 @@ public class Game {
     }
 
     public void process(String entry) throws FrameException {
-
-
         System.out.println("-----");
         System.out.println("Process " + entry);
 
         frame.addBowlToFrame(frame, entry);
 
         if ((frame.bowls.size() >= bowlPerFrame) || (frame.knockedPins >= frame.maxPins)) {
-            //reset the frame
             frames.add(frame);
-
-            // Start debug
-            frames.forEach(
-                f -> {
-                    System.out.println("Frame");
-                    f.bowls.forEach(
-                        b -> System.out.println("  display: " + b.display + " knocks: " + b.knockedPins)
-                    );
-                }
-            );
-            // End debug
-
+            debug();
             frame = new Frame(new ArrayList<Bowl>());
-            System.out.println("frame reset");
         }
 
+    }
+
+    public Integer getTotalScore() {
+        return 100;
+    }
+
+    private void debug() {
+        frames.forEach(
+            f -> {
+                System.out.println("Frame");
+                f.bowls.forEach(
+                    b -> System.out.println("  display: " + b.display + " knocks: " + b.knockedPins)
+                );
+            }
+        );
     }
 }

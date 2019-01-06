@@ -12,14 +12,15 @@ public class App {
 
         Game game = new Game();
 
-        // String[] entries = {"1","3","X","9","/","4"};
+        String[] entries = {"1","3","X","9","/","4","2"};
         // String[] entries = {"1","s","X","9","/","4"};
-        String[] entries = {"1","3","X","9","5","4"};
+        // String[] entries = {"1","3","X","9","5","4"};
 
         try {
             for(int i=0; i < entries.length; i++){
                 if (validateStringEntry(entries[i])) {
                     game.process(entries[i]);
+                    System.out.println("The total score is " + game.getTotalScore());
                 } else
                 {
                     System.out.println("The entry " + entries[i] + " is not a valid string");
