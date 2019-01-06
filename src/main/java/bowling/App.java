@@ -8,11 +8,12 @@ import java.util.stream.Stream;
 
 public class App {
     public static void main(String... args) {
-        System.out.println("hello");
 
         Game game = new Game();
 
         String[] entries = {"1","3","X","9","/","4"};
+        // String[] entries = {"1","s","X","9","/","4"};
+        // String[] entries = {"1","3","X","9","5","4"};
 
         for(int i=0; i < entries.length; i++){
             if (validateStringEntry(entries[i])) {

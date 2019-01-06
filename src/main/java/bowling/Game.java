@@ -29,8 +29,9 @@ public class Game {
         System.out.println("Process " + entry);
 
 
+
         try {
-            addBowlToFrame(frame, entry);
+            frame.addBowlToFrame(frame, entry);
         } catch(FrameException e) {
             System.out.println(e.getMessage());
         }
@@ -55,30 +56,5 @@ public class Game {
             System.out.println("frame reset");
         }
 
-    }
-
-    // What should happen if the entered bowl is not valid?
-    // (e.g. 9 followed by 4 in a frame)
-    // Should the program ignore bowl? or should the program throw an exception?
-    // In this case I choose to the latter, in the absence of `Either` in Java
-    private void addBowlToFrame(Frame frame, String bowlDisplay) throws FrameException {
-        Integer knockedPins = FrameUtil.translateBowlDisplay(
-            frame.maxPins,
-            frame.knockedPins,
-            bowlDisplay
-        );
-
-        if (knockedPins + frame.knockedPins <= frame.maxPins) {
-            frame.bowls.add(
-                new Bowl(
-                    bowlDisplay,
-                    knockedPins
-                )
-            );
-
-            frame.knockedPins = knockedPins;
-        } else {
-            throw new FrameException("cant add " + knockedPins + " to " + frame.knockedPins);
-        }
     }
 }
