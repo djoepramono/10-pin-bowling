@@ -1,14 +1,9 @@
 package bowling;
 
-// import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
-// import bowling.model.Score;
 import bowling.model.Bowl;
-// import bowling.model.Frame;
-// import bowling.helper.FrameException;
-
 import java.util.stream.Stream;
 
 public class App {
@@ -17,7 +12,7 @@ public class App {
 
         Game game = new Game();
 
-        String[] entries = {"1","3","X","9","3"};
+        String[] entries = {"1","3","X","9","/","4"};
 
         for(int i=0; i < entries.length; i++){
             if (validateStringEntry(entries[i])) {
@@ -28,12 +23,6 @@ public class App {
                 break;
             }
         }
-
-        // List<Bowl> bowls = input.stream()
-        //     .map(s -> { return new Bowl(s); })
-        //     .collect(Collectors.toList());
-        // bowls.forEach(bowl -> game.process(bowl));
-
     }
 
     private static Boolean validateStringEntry(String entry) {

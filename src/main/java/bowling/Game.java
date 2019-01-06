@@ -14,7 +14,6 @@ public class Game {
     List<Frame> frames = new ArrayList<Frame>();
     Integer bowlPerFrame = 2;
     Integer bowlLimit;
-    // Bowl initialBowl = new Bowl("u");
     Integer score;
 
     Frame frame = new Frame(new ArrayList<Bowl>()); // needed for the first run
@@ -25,7 +24,6 @@ public class Game {
 
     public void process(String entry) {
 
-        // prepareFrame(currentFrame);
 
         System.out.println("-----");
         System.out.println("Process " + entry);
@@ -82,7 +80,5 @@ public class Game {
         } else {
             throw new FrameException("cant add " + knockedPins + " to " + frame.knockedPins);
         }
-
     }
-
 }
