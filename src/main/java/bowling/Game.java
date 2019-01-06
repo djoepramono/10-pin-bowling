@@ -58,6 +58,28 @@ public class Game {
         );
     }
 
+    // Recursion
+    private void addBowlToFrame(Frame frame, String bowlDisplay, Integer bowlPerFrame) {
+        if ((frame.bowls.size() >= bowlPerFrame) || (frame.knockedPins >= frame.maxPins)) {
+            frames.add(currentFrame);
+        } else
+        {
+            Frame newFrame = new Frame(new ArrayList<Bowl>());
+            newFrame.bowls.add(
+                new Bowl(
+                    bowlDisplay,
+                    calculateKnockedPins(
+                        newFrame.maxPins,
+                        newFrame.knockedPins,
+                        bowlDisplay
+                    )
+                )
+            );
+            addBowlToFrame(newFrame, bowlDisplay, bowlPerFrame);
+        }
+
+    }
+
     // private void prepareFrame(Frame frame) {
     //     if ((frame.bowls.size() >= bowlPerFrame) || (frame.knockedPins >= frame.maxPins)) {
     //         frames.add(currentFrame);
