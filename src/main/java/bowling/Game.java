@@ -4,7 +4,7 @@ import java.util.stream.Stream;
 import java.util.ArrayList;
 import bowling.model.Bowl;
 import bowling.model.Frame;
-// import bowling.model.Score;
+// import bowling.model.knockedPins;
 
 public class Game {
 
@@ -34,9 +34,9 @@ public class Game {
         prepareFrame(currentFrame);
         addBowltoFrame(
             currentFrame,
-            new Bowl(entry, calculateBowlScore(
-                currentFrame.maxScore,
-                currentFrame.score,
+            new Bowl(entry, calculateKnockedPins(
+                currentFrame.maxPins,
+                currentFrame.knockedPins,
                 entry)
             )
         );
@@ -52,7 +52,7 @@ public class Game {
     }
 
 
-    private Integer calculateBowlScore(Integer frameMaxScore, Integer frameScore, String bowlDisplay) {
+    private Integer calculateKnockedPins(Integer maxPins, Integer knockedPins, String bowlDisplay) {
         Integer bowlScore;
         // Alternatively, regex match can be used here
         // But since it needs to be parsed anyway, try catch is better
@@ -61,8 +61,8 @@ public class Game {
         } catch(NumberFormatException e) {
             switch(bowlDisplay) {
                 case "-": bowlScore = 0; break;
-                case "/": bowlScore = frameMaxScore - frameScore; break;
-                case "X": bowlScore = frameMaxScore - frameScore; break;
+                case "/": bowlScore = maxPins - knockedPins; break;
+                case "X": bowlScore = maxPins - knockedPins; break;
                 default: bowlScore = 0;
             }
         }
