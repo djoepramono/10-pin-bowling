@@ -14,7 +14,8 @@ public class Game {
     Integer bowlLimit;
     // Bowl initialBowl = new Bowl("u");
     Integer score;
-    Frame currentFrame = new Frame(new ArrayList<Bowl>());
+
+    Frame frame = new Frame(new ArrayList<Bowl>()); // needed for the first run
 
     public Game() {
         this.bowlLimit = 10;
@@ -27,24 +28,8 @@ public class Game {
         System.out.println("-----");
         System.out.println("Process " + entry);
 
-        // Frame currentFrame = new Frame(new ArrayList<Bowl>());
-        currentFrame.bowls.add(
-            new Bowl(entry, calculateKnockedPins(
-                currentFrame.maxPins,
-                currentFrame.knockedPins,
-                entry
-            )
-        ));
-
-        if ((currentFrame.bowls.size() >= bowlPerFrame) || (currentFrame.knockedPins >= currentFrame.maxPins)) {
-            frames.add(currentFrame);
-            System.out.println("Added frame");
-            System.out.println("  " + String.join(
-                "-",
-                currentFrame.bowls.stream().map(b->b.display).collect(Collectors.toList())
-            ));
-            currentFrame.bowls = new ArrayList<Bowl>();
-        }
+        Frame frame = addBowlToFrame(entry);
+        frames.add(frame);
 
         //Debug purpose
         //Printout all bowls
@@ -56,28 +41,34 @@ public class Game {
                 );
             }
         );
+
     }
 
     // Recursion
-    private void addBowlToFrame(Frame frame, String bowlDisplay, Integer bowlPerFrame) {
+    private Frame addBowlToFrame(String bowlDisplay) {
+        Integer bowlPerFrame = 2;
+
         if ((frame.bowls.size() >= bowlPerFrame) || (frame.knockedPins >= frame.maxPins)) {
-            frames.add(currentFrame);
+            //reset the frame
+            System.out.println("busted");
+            frame = new Frame(new ArrayList<Bowl>());
         } else
         {
-            Frame newFrame = new Frame(new ArrayList<Bowl>());
-            newFrame.bowls.add(
+            frame.bowls.add(
                 new Bowl(
                     bowlDisplay,
                     calculateKnockedPins(
-                        newFrame.maxPins,
-                        newFrame.knockedPins,
+                        frame.maxPins,
+                        frame.knockedPins,
                         bowlDisplay
                     )
                 )
             );
-            addBowlToFrame(newFrame, bowlDisplay, bowlPerFrame);
+            // frame = frame;
+            // addBowlToFrame(bowlDisplay);
         }
 
+        return frame;
     }
 
     // private void prepareFrame(Frame frame) {
@@ -104,6 +95,7 @@ public class Game {
             }
         }
 
+        System.out.println("  calculated " + bowlDisplay + " as " + bowlScore);
         return bowlScore;
     }
 
