@@ -32,7 +32,14 @@ public class Game {
         System.out.println(entry);
 
         prepareFrame(currentFrame);
-        addBowltoFrame(currentFrame, new Bowl(entry));
+        addBowltoFrame(
+            currentFrame,
+            new Bowl(entry, calculateBowlScore(
+                currentFrame.maxScore,
+                currentFrame.score,
+                entry)
+            )
+        );
         currentFrame.bowls.forEach(x -> System.out.println(x.display));
         // bowls.forEach(bowl -> System.out.println(bowl.display));
         // frames.limit(bowlLimit).forEach(System.out::println);
@@ -45,7 +52,7 @@ public class Game {
     }
 
 
-    public Integer calculateBowlScore(Frame frame, String bowlDisplay) {
+    private Integer calculateBowlScore(Integer frameMaxScore, Integer frameScore, String bowlDisplay) {
         Integer bowlScore;
         // Alternatively, regex match can be used here
         // But since it needs to be parsed anyway, try catch is better
@@ -54,9 +61,9 @@ public class Game {
         } catch(NumberFormatException e) {
             switch(bowlDisplay) {
                 case "-": bowlScore = 0; break;
-                case "/": bowlScore = frame.maxScore - frame.score; break;
-                case "X": bowlScore = frame.maxScore - frame.score; break;
-                default: bowlScore = 0; // This line should not be reachable
+                case "/": bowlScore = frameMaxScore - frameScore; break;
+                case "X": bowlScore = frameMaxScore - frameScore; break;
+                default: bowlScore = 0;
             }
         }
 
