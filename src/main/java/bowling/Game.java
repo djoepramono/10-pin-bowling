@@ -29,18 +29,28 @@ public class Game {
         System.out.println("Process " + entry);
 
         Frame frame = addBowlToFrame(entry);
-        frames.add(frame);
 
-        //Debug purpose
-        //Printout all bowls
-        frames.forEach(
-            f -> {
-                System.out.println("Frame");
-                f.bowls.forEach(
-                    b -> System.out.println("  display: " + b.display + " knocks: " + b.knockedPins)
-                );
-            }
-        );
+
+
+        // Bust
+        if ((frame.bowls.size() >= bowlPerFrame) || (frame.knockedPins >= frame.maxPins)) {
+            //reset the frame
+            frames.add(frame);
+
+            // Start debug
+            frames.forEach(
+                f -> {
+                    System.out.println("Frame");
+                    f.bowls.forEach(
+                        b -> System.out.println("  display: " + b.display + " knocks: " + b.knockedPins)
+                    );
+                }
+            );
+            // End debug
+
+            System.out.println("busted");
+            frame = new Frame(new ArrayList<Bowl>());
+        }
 
     }
 
@@ -48,25 +58,16 @@ public class Game {
     private Frame addBowlToFrame(String bowlDisplay) {
         Integer bowlPerFrame = 2;
 
-        if ((frame.bowls.size() >= bowlPerFrame) || (frame.knockedPins >= frame.maxPins)) {
-            //reset the frame
-            System.out.println("busted");
-            frame = new Frame(new ArrayList<Bowl>());
-        } else
-        {
-            frame.bowls.add(
-                new Bowl(
-                    bowlDisplay,
-                    calculateKnockedPins(
-                        frame.maxPins,
-                        frame.knockedPins,
-                        bowlDisplay
-                    )
+        frame.bowls.add(
+            new Bowl(
+                bowlDisplay,
+                calculateKnockedPins(
+                    frame.maxPins,
+                    frame.knockedPins,
+                    bowlDisplay
                 )
-            );
-            // frame = frame;
-            // addBowlToFrame(bowlDisplay);
-        }
+            )
+        );
 
         return frame;
     }
