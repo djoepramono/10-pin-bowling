@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 // import bowling.model.Score;
 import bowling.model.Bowl;
 // import bowling.model.Frame;
-import bowling.helper.AppException;
+// import bowling.helper.FrameException;
 
 import java.util.stream.Stream;
 

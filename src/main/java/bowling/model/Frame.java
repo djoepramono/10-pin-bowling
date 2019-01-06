@@ -12,8 +12,4 @@ public class Frame {
     public Frame(List<Bowl> bowls) {
         this.bowls = bowls;
     }
-
-    public void addBowl(Bowl bowl) {
-        this.bowls.add(bowl);
-    }
 }

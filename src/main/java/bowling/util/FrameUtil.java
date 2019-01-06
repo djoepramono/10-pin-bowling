@@ -10,7 +10,7 @@ public final class FrameUtil {
             .reduce(0, (a, b) -> a + b);
     }
 
-    public static Integer calculateKnockedPins(Integer maxPins, Integer knockedPins, String bowlDisplay) {
+    public static Integer translateBowlDisplay(Integer frameMaxPins, Integer frameKnockedPins, String bowlDisplay) {
         Integer bowlScore;
         // Alternatively, regex match can be used here
         // But since it needs to be parsed anyway, try catch is better
@@ -19,8 +19,8 @@ public final class FrameUtil {
         } catch(NumberFormatException e) {
             switch(bowlDisplay) {
                 case "-": bowlScore = 0; break;
-                case "/": bowlScore = maxPins - knockedPins; break;
-                case "X": bowlScore = maxPins - knockedPins; break;
+                case "/": bowlScore = frameMaxPins - frameKnockedPins; break;
+                case "X": bowlScore = frameMaxPins - frameKnockedPins; break;
                 default: bowlScore = 0;
             }
         }
