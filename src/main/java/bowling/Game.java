@@ -28,8 +28,10 @@ public class Game {
         System.out.println("-----");
         System.out.println("Process " + entry);
 
-        Frame frame = addBowlToFrame(entry);
+        // Frame frame = addBowlToFrame(entry);
+        addBowlToFrame(entry);
 
+        // System.out.println(frame.knockedPins);
 
 
         // Bust
@@ -48,28 +50,38 @@ public class Game {
             );
             // End debug
 
-            System.out.println("busted");
             frame = new Frame(new ArrayList<Bowl>());
+            System.out.println("frame reset");
         }
 
     }
 
     // Recursion
-    private Frame addBowlToFrame(String bowlDisplay) {
-        Integer bowlPerFrame = 2;
+    private void addBowlToFrame(String bowlDisplay) {
+        // Integer bowlPerFrame = 2;
+
+        Integer knockedPins = calculateKnockedPins(
+            frame.maxPins,
+            frame.knockedPins,
+            bowlDisplay
+        );
 
         frame.bowls.add(
             new Bowl(
                 bowlDisplay,
-                calculateKnockedPins(
-                    frame.maxPins,
-                    frame.knockedPins,
-                    bowlDisplay
-                )
+                knockedPins
             )
         );
 
-        return frame;
+        frame.knockedPins = knockedPins;
+
+        // // Reset the bowls
+        //  if ((frame.bowls.size() >= bowlPerFrame) || (frame.knockedPins >= frame.maxPins)) {
+        //     System.out.println("waht");
+        //     frame.bowls = new ArrayList<Bowl>();
+        // }
+
+        // return frame;
     }
 
     // private void prepareFrame(Frame frame) {
