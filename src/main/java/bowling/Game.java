@@ -22,21 +22,14 @@ public class Game {
         this.bowlLimit = 10;
     }
 
-    public void process(String entry) {
+    public void process(String entry) throws FrameException {
 
 
         System.out.println("-----");
         System.out.println("Process " + entry);
 
+        frame.addBowlToFrame(frame, entry);
 
-
-        try {
-            frame.addBowlToFrame(frame, entry);
-        } catch(FrameException e) {
-            System.out.println(e.getMessage());
-        }
-
-        // Bust
         if ((frame.bowls.size() >= bowlPerFrame) || (frame.knockedPins >= frame.maxPins)) {
             //reset the frame
             frames.add(frame);
