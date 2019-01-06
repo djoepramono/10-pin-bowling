@@ -7,7 +7,7 @@ import java.util.List;
 public class Frame {
     public List<Bowl> bowls = new ArrayList<Bowl>();
     public Integer maxPins = 10;
-    public Integer knockedPins;
+    public Integer knockedPins = 0;
 
     public Frame(List<Bowl> bowls) {
         this.bowls = bowls;

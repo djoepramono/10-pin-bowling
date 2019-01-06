@@ -38,6 +38,6 @@ public class App {
 
     private static Boolean validateStringEntry(String entry) {
         // this is a string match you don't need `/ /g`
-        return entry.matches("^[0-9|x|\\/|-]$");
+        return entry.matches("^[0-9|X|\\/|-]$");
     }
 }

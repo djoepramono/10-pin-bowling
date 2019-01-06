@@ -2,14 +2,14 @@ package bowling;
 
 import java.util.stream.Stream;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 import bowling.model.Bowl;
 import bowling.model.Frame;
-// import bowling.model.knockedPins;
 
 public class Game {
 
-    // Stream.Builder<Bowl> bowler = Stream.builder();
-    Stream<Frame> frames;
+    List<Frame> frames = new ArrayList<Frame>();
     Integer bowlPerFrame = 2;
     Integer bowlLimit;
     // Bowl initialBowl = new Bowl("u");
@@ -21,35 +21,50 @@ public class Game {
     }
 
     public void process(String entry) {
-        // Stream<Bowl> frameBowls = Stream.iterate(initialBowl, ignored -> currentBowl)
-        //     .map(bowl -> { addBowltoFrame(frame, currentBowl); return bowl;} )
-        //     .limit(bowlPerFrame)
-        //     .collect(Collectors.toList());
-        //     ;
+
+        // prepareFrame(currentFrame);
 
         System.out.println("-----");
-        System.out.println("Process");
-        System.out.println(entry);
+        System.out.println("Process " + entry);
 
-        prepareFrame(currentFrame);
-        addBowltoFrame(
-            currentFrame,
+        // Frame currentFrame = new Frame(new ArrayList<Bowl>());
+        currentFrame.bowls.add(
             new Bowl(entry, calculateKnockedPins(
                 currentFrame.maxPins,
                 currentFrame.knockedPins,
-                entry)
+                entry
             )
+        ));
+
+        if ((currentFrame.bowls.size() >= bowlPerFrame) || (currentFrame.knockedPins >= currentFrame.maxPins)) {
+            frames.add(currentFrame);
+            System.out.println("Added frame");
+            System.out.println("  " + String.join(
+                "-",
+                currentFrame.bowls.stream().map(b->b.display).collect(Collectors.toList())
+            ));
+            currentFrame.bowls = new ArrayList<Bowl>();
+        }
+
+        //Debug purpose
+        //Printout all bowls
+        frames.forEach(
+            f -> {
+                System.out.println("Frame");
+                f.bowls.forEach(
+                    b -> System.out.println("  display: " + b.display + " knocks: " + b.knockedPins)
+                );
+            }
         );
-        currentFrame.bowls.forEach(x -> System.out.println(x.display));
-        // bowls.forEach(bowl -> System.out.println(bowl.display));
-        // frames.limit(bowlLimit).forEach(System.out::println);
     }
 
-    public void prepareFrame(Frame frame) {
-        if (frame.bowls.size() >= bowlPerFrame) {
-            frame.bowls = new ArrayList<Bowl>();
-        }
-    }
+    // private void prepareFrame(Frame frame) {
+    //     if ((frame.bowls.size() >= bowlPerFrame) || (frame.knockedPins >= frame.maxPins)) {
+    //         frames.add(currentFrame);
+    //         System.out.println("Added frame");
+    //         // frame.bowls = new ArrayList<Bowl>();
+    //     }
+    // }
 
 
     private Integer calculateKnockedPins(Integer maxPins, Integer knockedPins, String bowlDisplay) {
@@ -68,13 +83,6 @@ public class Game {
         }
 
         return bowlScore;
-    }
-
-    public void addBowltoFrame(Frame frame, Bowl bowl) {
-
-        System.out.print("Add bowl to current frame size: ");
-        System.out.println(frame.bowls.size());
-        frame.bowls.add(bowl);
     }
 
 }
