@@ -89,12 +89,15 @@ public class Frame {
                     break;
                 case "/":
                     // only valid when:
-                    // - if there's already a integer in the frame
-                    isValid = false;
-                    isValid = frame.bowls.stream()
-                        .map(b -> isNumeric(b.display))
-                        .reduce(false, (a, b) -> a ); // check again
                     // - if there's already a `-`
+                    if (frame.bowls.stream().map(b -> b.display).filter(s -> s == "-").count() > 0) {
+                        isValid = true;
+                    // - if there's already a integer in the frame
+                    } else if(frame.bowls.stream().filter(b -> isNumeric(b.display)).count() > 0) {
+                        isValid = true;
+                    } else {
+                        isValid = false;
+                    }
                     break;
                 case "X":
                     // valid if the frame is empty

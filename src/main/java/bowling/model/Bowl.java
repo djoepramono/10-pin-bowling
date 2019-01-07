@@ -1,5 +1,6 @@
 package bowling.model;
 
+//Maybe should be split
 public class Bowl {
     public final String display;
     public final Integer knockedPins;
