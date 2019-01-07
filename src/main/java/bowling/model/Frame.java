@@ -48,11 +48,9 @@ public class Frame {
 
     public static Integer translateBowlDisplay(Integer frameMaxPins, Integer frameKnockedPins, String bowlDisplay) {
         Integer bowlScore;
-        // Alternatively, regex match can be used here
-        // But since it needs to be parsed anyway, try catch is better
-        try {
+        if (isNumeric(bowlDisplay)) {
             bowlScore = Integer.parseInt(bowlDisplay);
-        } catch(NumberFormatException e) {
+        } else {
             switch(bowlDisplay) {
                 case "-": bowlScore = 0; break;
                 case "/": bowlScore = frameMaxPins - frameKnockedPins; break;
@@ -61,7 +59,6 @@ public class Frame {
             }
         }
 
-        System.out.println("  calculated " + bowlDisplay + " as " + bowlScore);
         return bowlScore;
     }
 
