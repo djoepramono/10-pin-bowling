@@ -15,27 +15,34 @@ public class Frame {
     }
 
     public void addBowlToFrame(Frame frame, String bowlDisplay) throws FrameException {
-        Integer knockedPins = translateBowlDisplay(
-            frame.maxPins,
-            frame.knockedPins,
-            bowlDisplay
-        );
-
-        if (knockedPins + frame.knockedPins <= frame.maxPins) {
-            frame.bowls.add(
-                new Bowl(
-                    bowlDisplay,
-                    knockedPins
-                )
+        if (isValidNextBowl(frame, bowlDisplay)) {
+            Integer knockedPins = translateBowlDisplay(
+                frame.maxPins,
+                frame.knockedPins,
+                bowlDisplay
             );
 
-            frame.knockedPins = knockedPins;
+            if (knockedPins + frame.knockedPins <= frame.maxPins) {
+                frame.bowls.add(
+                    new Bowl(
+                        bowlDisplay,
+                        knockedPins
+                    )
+                );
+
+                frame.knockedPins = knockedPins;
+            } else {
+                // What should happen if the entered bowl is not valid?
+                // (e.g. 9 followed by 4 in a frame)
+                // Should the program ignore bowl? or should the program throw an exception?
+                // In this case I choose to do the latter, in the absence of `Either` in Java
+                throw new FrameException("invalid pin limit - cannot add " + knockedPins + " to " + frame.knockedPins);
+            }
         } else {
-            // What should happen if the entered bowl is not valid?
-            // (e.g. 9 followed by 4 in a frame)
-            // Should the program ignore bowl? or should the program throw an exception?
-            // In this case I choose to the latter, in the absence of `Either` in Java
-            throw new FrameException("cannot add " + knockedPins + " to " + frame.knockedPins);
+            // What should happen if the bowl sequence is not valid? (e.g. /9)
+            // Should it fail silently or should it throw an exception?
+            // In this case I choose to do the latter
+            throw new FrameException("invalid sequence - cannot add " + bowlDisplay + " to frame");
         }
     }
 
@@ -62,21 +69,9 @@ public class Frame {
     // e.g. 2/ is valid, but 2X is not valid
     // Atm ignore all numbers, as we check it in other function, but we might need to revisit
     // Thankfully we have a rule where there's maximum 2 bowls per frame, so validation is a little easier
+    // This doesn't validate the frame maximum pins
     public static Boolean isValidNextBowl(Frame frame, String bowlDisplay) {
         Boolean isValid = false;
-        // try {
-        //     bowlScore = Integer.parseInt(bowlDisplay);
-        // } catch(NumberFormatException e) {
-        //     switch(bowlDisplay) {
-        //         case "-": isValid = true; break;
-        //         case "/":
-        //             //if there's already a integer in the frame, then it's valid, otherwise invalid
-        //             if Frame.bowls.stream().map(b -> parseInt(b.knockedPins));
-        //             break;
-        //         case "X": bowlScore = frameMaxPins - frameKnockedPins; break;
-        //         default: bowlScore = 0;
-        //     }
-        // }
 
         if (isNumeric(bowlDisplay)) {
             //ignore for now
