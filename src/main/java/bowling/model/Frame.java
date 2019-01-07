@@ -8,21 +8,32 @@ import bowling.helper.FrameException;
 public class Frame {
     public List<Bowl> bowls = new ArrayList<Bowl>();
     public Integer maxPins = 10;
-    public Integer knockedPins = 0;
 
     public Frame(List<Bowl> bowls) {
         this.bowls = bowls;
     }
 
+    public static Integer calculateTotalKnockedPins(Frame frame) {
+        return frame.bowls.stream()
+            .map(bowl -> bowl.knockedPins)
+            .reduce(0, (a, b) -> a + b);
+    }
+
     public void addBowlToFrame(Frame frame, String bowlDisplay) throws FrameException {
+
+        Integer totalKnockedPinsInThisFrame = frame.calculateTotalKnockedPins(frame);
+
         if (isValidNextBowl(frame, bowlDisplay)) {
+            System.out.println("valid sequence");
             Integer knockedPins = translateBowlDisplay(
                 frame.maxPins,
-                frame.knockedPins,
+                totalKnockedPinsInThisFrame,
                 bowlDisplay
             );
 
-            if (knockedPins + frame.knockedPins <= frame.maxPins) {
+            if (knockedPins + totalKnockedPinsInThisFrame <= frame.maxPins) {
+                System.out.println(knockedPins + " " + totalKnockedPinsInThisFrame + " " + frame.maxPins);
+                frame.bowls.forEach(b -> System.out.println(b.display + " " + b.knockedPins));
                 frame.bowls.add(
                     new Bowl(
                         bowlDisplay,
@@ -30,15 +41,17 @@ public class Frame {
                     )
                 );
 
-                frame.knockedPins = knockedPins;
             } else {
+                System.out.println("exceeding pin limit");
                 // What should happen if the entered bowl is not valid?
                 // (e.g. 9 followed by 4 in a frame)
                 // Should the program ignore bowl? or should the program throw an exception?
                 // In this case I choose to do the latter, in the absence of `Either` in Java
-                throw new FrameException("invalid pin limit - cannot add " + knockedPins + " to " + frame.knockedPins);
+                throw new FrameException("exceeding pin limit - cannot add " + knockedPins + " to " + frame.calculateTotalKnockedPins(frame));
             }
         } else {
+            System.out.println("invalid sequence");
+//            frame.bowls.forEach(b -> System.out.println(b.display + " " + b.knockedPins));
             // What should happen if the bowl sequence is not valid? (e.g. /9)
             // Should it fail silently or should it throw an exception?
             // In this case I choose to do the latter

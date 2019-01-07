@@ -30,7 +30,7 @@ public class Game {
         if (frames.size() < frameLimit) {
             frame.addBowlToFrame(frame, entry);
 
-            if ((frame.bowls.size() >= bowlPerFrame) || (frame.knockedPins >= frame.maxPins)) {
+            if ((frame.bowls.size() >= bowlPerFrame) || (frame.calculateTotalKnockedPins(frame) >= frame.maxPins)) {
                 frames.add(frame);
                 debug();
                 frame = new Frame(new ArrayList<Bowl>());

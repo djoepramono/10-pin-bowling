@@ -15,8 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class FrameTest {
 
     @Test
-    public void addingXIntoFrameWithBowl()  {
-
+    public void addingStrikeIntoNonEmptyFrame() {
         List<Bowl> bowls = Arrays.asList(new Bowl("1",1));
         Frame frame = new Frame(bowls);
         String bowlDisplay = "X";
@@ -28,11 +27,67 @@ class FrameTest {
     }
 
     @Test
-    public void addingXIntoEmptyFrame() throws FrameException {
-
-        List<Bowl> bowls = new ArrayList<Bowl>();
+    public void addingStrikeIntoEmptyFrame() throws FrameException {
+        List<Bowl> bowls = new ArrayList<>();
         Frame frame = new Frame(bowls);
         String bowlDisplay = "X";
+
+        frame.addBowlToFrame(frame, bowlDisplay);
+        assertEquals(frame.bowls.stream().map(b -> b.display).filter(s -> s == bowlDisplay).count(), 1);
+    }
+
+    @Test
+    public void addingSpareIntoFrameWithAMiss()  {
+        List<Bowl> bowls = Arrays.asList(new Bowl("-",0));
+        Frame frame = new Frame(bowls);
+        String bowlDisplay = "/";
+
+        try {
+            frame.addBowlToFrame(frame, bowlDisplay);
+        } catch (FrameException e) {
+            System.out.println(e.getMessage());
+        }
+
+
+        assertEquals(frame.bowls.stream().map(b -> b.display).filter(s -> s == bowlDisplay).count(), 1);
+    }
+
+    @Test
+    public void addingSpareIntoFrameWithKnockedPins() throws FrameException {
+        List<Bowl> bowls = Arrays.asList(new Bowl("2",2));
+        Frame frame = new Frame(bowls);
+        String bowlDisplay = "/";
+
+        frame.addBowlToFrame(frame, bowlDisplay);
+        assertEquals(frame.bowls.stream().map(b -> b.display).filter(s -> s == bowlDisplay).count(), 1);
+    }
+
+    @Test
+    public void addingSpareIntoEmptyFrame() {
+        List<Bowl> bowls = new ArrayList<>();
+        Frame frame = new Frame(bowls);
+        String bowlDisplay = "/";
+
+        assertThrows(FrameException.class, () -> {
+            frame.addBowlToFrame(frame, bowlDisplay);
+        });
+    }
+
+//    @Test
+//    public void addingMissIntoNonEmptyFrame() throws FrameException {
+//        List<Bowl> bowls = Arrays.asList(new Bowl("1",1));
+//        Frame frame = new Frame(bowls);
+//        String bowlDisplay = "-";
+//
+//        frame.addBowlToFrame(frame, bowlDisplay);
+//        assertEquals(frame.bowls.stream().map(b -> b.display).filter(s -> s == bowlDisplay).count(), 1);
+//    }
+
+    @Test
+    public void addingMissIntoEmptyFrame() throws FrameException {
+        List<Bowl> bowls = new ArrayList<>();
+        Frame frame = new Frame(bowls);
+        String bowlDisplay = "-";
 
         frame.addBowlToFrame(frame, bowlDisplay);
         assertEquals(frame.bowls.stream().map(b -> b.display).filter(s -> s == bowlDisplay).count(), 1);
