@@ -17,7 +17,7 @@ public final class FrameUtil {
         return true;
     }
 
-    public static Integer calculateTotalKnockedPins(Frame frame) {
+    public static Integer calculateTotalKnockedPins(Frame frame) { //todo just list of bowls to most
         return frame.getBowls().stream()
             .map(bowl -> bowl.knockedPins)
             .reduce(0, (a, b) -> a + b);

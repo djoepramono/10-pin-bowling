@@ -45,7 +45,7 @@ public class Game {
         return frames.size();
     }
 
-    public Integer getTotalScore(List<Bowl> bowls) {
+    public Integer getTotalScore(List<Bowl> bowls) { //todo score util?
         Integer totalScore = 0;
 
 

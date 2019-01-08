@@ -8,7 +8,7 @@ import java.util.List;
 import static bowling.util.FrameUtil.*;
 
 public class Frame {
-    private List<Bowl> bowls = new ArrayList<Bowl>(); //todo change to private
+    private List<Bowl> bowls = new ArrayList<Bowl>();
     private Integer maxPins = 10;
 
     public Frame(List<Bowl> bowls) {
