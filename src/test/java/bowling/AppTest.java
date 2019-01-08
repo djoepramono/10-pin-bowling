@@ -45,14 +45,14 @@ class AppTest {
         assertThrows(FrameException.class, () -> app.process(entries));
     }
 
-//    @Test
-//    public void processEntriesOverMaximumFrames() throws FrameException {
-//
-//        String[] entries = {"X","X","X","X","X","X","X","X","X","X","X","X"};
-//        App app = new App();
-//        Integer score = app.process(entries);
-//
-//        assertEquals((Integer) 300, score);
-//    }
+    @Test
+    public void processEntriesOverMaximumFrames() throws FrameException {
+
+        String[] entries = {"X","X","X","X","X","X","X","X","X","X","X","X"};
+        App app = new App();
+        Integer score = app.process(entries);
+
+        assertEquals((Integer) 300, score);
+    }
 
 }

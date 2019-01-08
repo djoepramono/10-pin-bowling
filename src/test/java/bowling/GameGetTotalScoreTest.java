@@ -64,7 +64,19 @@ class GameGetTotalScoreTest {
         bowls.add(new Bowl("1",1));
 
         Game game = new Game();
-        assertEquals((Integer) 36, game.getTotalScore(bowls));
+        assertEquals((Integer) 38, game.getTotalScore(bowls));
+    }
+
+    @Test
+    public void getTotalScoreWithConsecutiveStrikes() {
+        List<Bowl> bowls = new ArrayList<>();
+        bowls.add(new Bowl("X",10));
+        bowls.add(new Bowl("X",10));
+        bowls.add(new Bowl("X",10));
+        bowls.add(new Bowl("X",10));
+
+        Game game = new Game();
+        assertEquals((Integer) 90, game.getTotalScore(bowls));
     }
 
     @Test

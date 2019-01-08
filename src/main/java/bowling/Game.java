@@ -16,11 +16,12 @@ public class Game {
     List<Frame> frames = new ArrayList<Frame>();
     Integer bowlPerFrame = 2;
     Integer frameLimit;
+    Boolean finished = false;
 
     Frame frame = new Frame(new ArrayList<Bowl>()); // needed for the first run
 
     public Game() {
-        this.frameLimit = 12;
+        this.frameLimit = 12; // 11 is correct
         frames.add(frame);
     } //todo check later 10 or 11 or 12
 
@@ -40,6 +41,7 @@ public class Game {
             debug();
 
         } else {
+            finished = true;
             // What should be done once the frame limit has been reached?
             // Throw an exception or just log an output?
             // I choose to do the latter
@@ -52,24 +54,18 @@ public class Game {
     public Integer getTotalScore(List<Bowl> bowls) {
         Integer totalScore = 0;
 
-        Collections.reverse(bowls);
-
-//        totalScore = bowls.stream()
-//            .map(b -> b.knockedPins)
-//            .reduce(0 ,(a,b) -> a+b);
 
         for (var i = 0; i < bowls.size(); i++) {
             Bowl bowl = bowls.get(i);
 
-            if (
-                ( i+1 >= bowls.size() || !(bowls.get(i+1).display == "/" || bowls.get(i+1).display == "X")) &&
-                ( i+2 >= bowls.size() || bowls.get(i+2).display != "X")
-            ) {
-                totalScore += bowl.knockedPins;
+            if (bowl.display == "X") {
+                totalScore = totalScore + bowl.knockedPins + getBowlKnockedPinsFromArrayList(bowls, i+1) + getBowlKnockedPinsFromArrayList(bowls, i+2);
+            } else if (bowl.display == "/") {
+                totalScore = totalScore + bowl.knockedPins + getBowlKnockedPinsFromArrayList(bowls, i+1);
             } else {
-                System.out.println("has modifier");
-                totalScore += (bowl.knockedPins * 2);
+                totalScore += bowl.knockedPins;
             }
+
         }
 
         return totalScore;
@@ -80,6 +76,14 @@ public class Game {
         return frames.stream()
             .flatMap(f -> f.bowls.stream())
             .collect(Collectors.toList());
+    }
+
+    private Integer getBowlKnockedPinsFromArrayList(List<Bowl> bowls, Integer i) {
+        try {
+            return bowls.get(i).knockedPins;
+        } catch (IndexOutOfBoundsException e){
+            return 0;
+        }
     }
 
     private void debug() {
