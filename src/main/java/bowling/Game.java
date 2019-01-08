@@ -19,8 +19,8 @@ public class Game {
     Frame frame = new Frame(new ArrayList<Bowl>()); // needed for the first run
 
     public Game() {
-        this.frameLimit = 3;
-    }
+        this.frameLimit = 12;
+    } //todo check later 10 or 11 or 12
 
     public void process(String entry) throws FrameException {
         System.out.println("-----");
@@ -44,10 +44,9 @@ public class Game {
         }
     }
 
-    public Integer getTotalScore() {
+    public Integer getTotalScore(List<Bowl> bowls) {
         Integer totalScore = 0;
 
-        List<Bowl> bowls = getAllBowls(frames);
         Collections.reverse(bowls);
 
 //        totalScore = bowls.stream()
@@ -56,9 +55,9 @@ public class Game {
 
         for (var i = 0; i < bowls.size(); i++) {
             Bowl bowl = bowls.get(i);
-            
+
             if (
-                ( i+1 >= bowls.size() || bowls.get(i+1).display != "/") &&
+                ( i+1 >= bowls.size() || !(bowls.get(i+1).display == "/" || bowls.get(i+1).display == "X")) &&
                 ( i+2 >= bowls.size() || bowls.get(i+2).display != "X")
             ) {
                 totalScore += bowl.knockedPins;
@@ -71,15 +70,8 @@ public class Game {
         return totalScore;
     }
 
-//    private Boolean isTheNextTwoBowlsHasModifier(ArrayList<Bowl> bowls, Integer index) {
-//        if (index < bowls.size() && (bowls.get(index+1).display == "/") || bowls.get(index+2).display == "X") {
-//            return true;
-//        } else {
-//            return false;
-//        }
-//    }
 
-    private List<Bowl> getAllBowls(List<Frame> frames) {
+    public List<Bowl> getAllBowls(List<Frame> frames) {
         return frames.stream()
             .flatMap(f -> f.bowls.stream())
             .collect(Collectors.toList());

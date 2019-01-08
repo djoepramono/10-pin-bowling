@@ -24,7 +24,6 @@ public class Frame {
         Integer totalKnockedPinsInThisFrame = frame.calculateTotalKnockedPins(frame);
 
         if (isValidNextBowl(frame, bowlDisplay)) {
-            System.out.println("valid sequence");
             Integer knockedPins = translateBowlDisplay(
                 frame.maxPins,
                 totalKnockedPinsInThisFrame,
@@ -32,8 +31,6 @@ public class Frame {
             );
 
             if (knockedPins + totalKnockedPinsInThisFrame <= frame.maxPins) {
-                System.out.println(knockedPins + " " + totalKnockedPinsInThisFrame + " " + frame.maxPins);
-                frame.bowls.forEach(b -> System.out.println(b.display + " " + b.knockedPins));
                 frame.bowls.add(
                     new Bowl(
                         bowlDisplay,
