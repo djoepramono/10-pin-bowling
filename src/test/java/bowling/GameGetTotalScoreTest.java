@@ -10,8 +10,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GameGetTotalScoreTest {
 
-    // Get total score
-
     @Test
     public void getTotalScoreWithSpare() {
         List<Bowl> bowls = new ArrayList<>();
