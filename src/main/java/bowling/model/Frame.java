@@ -25,9 +25,9 @@ public class Frame {
 
     public void addBowlToFrame(Frame frame, String bowlDisplay) throws FrameException {
 
-        Integer totalKnockedPinsInThisFrame = calculateTotalKnockedPins(frame);
+        Integer totalKnockedPinsInThisFrame = calculateTotalKnockedPins(frame.getBowls());
 
-        if (isValidNextBowl(frame, bowlDisplay)) {
+        if (isValidNextBowl(frame.getBowls(), bowlDisplay)) {
             Integer knockedPins = translateBowlDisplay(
                 frame.maxPins,
                 totalKnockedPinsInThisFrame,

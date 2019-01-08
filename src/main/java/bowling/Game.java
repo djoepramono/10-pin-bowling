@@ -26,7 +26,7 @@ public class Game {
 
     public Integer process(String entry) throws BowlingException {
         if (frames.size() <= frameLimit) {
-            if (frame.getBowls().size() < bowlPerFrame && (calculateTotalKnockedPins(frame) < frame.getMaxPins())) {
+            if (frame.getBowls().size() < bowlPerFrame && (calculateTotalKnockedPins(frame.getBowls()) < frame.getMaxPins())) {
                 frame.addBowlToFrame(frame, entry);
             } else {
                 frame = new Frame(new ArrayList<Bowl>());

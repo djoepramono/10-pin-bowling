@@ -1,6 +1,7 @@
 package bowling.util;
 
-import bowling.model.Frame;
+import java.util.List;
+import bowling.model.Bowl;
 
 public final class FrameUtil {
 
@@ -17,8 +18,8 @@ public final class FrameUtil {
         return true;
     }
 
-    public static Integer calculateTotalKnockedPins(Frame frame) { //todo just list of bowls to most
-        return frame.getBowls().stream()
+    public static Integer calculateTotalKnockedPins(List<Bowl> bowls) { //todo just list of bowls to most
+        return bowls.stream()
             .map(bowl -> bowl.knockedPins)
             .reduce(0, (a, b) -> a + b);
     }
@@ -44,7 +45,7 @@ public final class FrameUtil {
     // Atm ignore all numbers, as we check it in other function, but we might need to revisit
     // Thankfully we have a rule where there's maximum 2 bowls per frame, so validation is a little easier
     // This doesn't validate the frame maximum pins
-    public static Boolean isValidNextBowl(Frame frame, String bowlDisplay) {
+    public static Boolean isValidNextBowl(List<Bowl> bowls, String bowlDisplay) {
         Boolean isValid = false;
 
         if (isNumeric(bowlDisplay)) {
@@ -58,10 +59,10 @@ public final class FrameUtil {
                 case "/":
                     // only valid when:
                     // - if there's already a `-`
-                    if (frame.getBowls().stream().map(b -> b.display).filter(s -> s.equals("-")).count() > 0) {
+                    if (bowls.stream().map(b -> b.display).filter(s -> s.equals("-")).count() > 0) {
                         isValid = true;
                         // - if there's already a integer in the frame
-                    } else if(frame.getBowls().stream().filter(b -> isNumeric(b.display)).count() > 0) {
+                    } else if(bowls.stream().filter(b -> isNumeric(b.display)).count() > 0) {
                         isValid = true;
                     } else {
                         isValid = false;
@@ -69,7 +70,7 @@ public final class FrameUtil {
                     break;
                 case "X":
                     // valid if the frame is empty
-                    isValid = frame.getBowls().isEmpty();
+                    isValid = bowls.isEmpty();
                     break;
                 default:
                     isValid = false;

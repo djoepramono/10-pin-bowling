@@ -16,8 +16,7 @@ class CalculateKnockedPinsTest {
     public void processSuccessfulEntries() {
         List<Bowl> bowls = new ArrayList<>();
         bowls.add(new Bowl("8",8));
-        Frame frame = new Frame(bowls);
-        Integer pins = calculateTotalKnockedPins(frame);
+        Integer pins = calculateTotalKnockedPins(bowls);
 
         assertEquals((Integer) 8, pins);
     }
