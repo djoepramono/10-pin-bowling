@@ -21,7 +21,7 @@ class FrameAddingBowlTest {
         String bowlDisplay = "3";
 
         frame.addBowlToFrame(frame, bowlDisplay);
-        assertEquals(frame.bowls.stream().map(b -> b.display).filter(s -> s == bowlDisplay).count(), 1);
+        assertEquals(frame.getBowls().stream().map(b -> b.display).filter(s -> s == bowlDisplay).count(), 1);
     }
 
     @Test
@@ -32,7 +32,7 @@ class FrameAddingBowlTest {
         String bowlDisplay = "3";
 
         frame.addBowlToFrame(frame, bowlDisplay);
-        assertEquals(frame.bowls.stream().map(b -> b.display).filter(s -> s == bowlDisplay).count(), 1);
+        assertEquals(frame.getBowls().stream().map(b -> b.display).filter(s -> s == bowlDisplay).count(), 1);
     }
 
 
@@ -55,7 +55,7 @@ class FrameAddingBowlTest {
         String bowlDisplay = "X";
 
         frame.addBowlToFrame(frame, bowlDisplay);
-        assertEquals(frame.bowls.stream().map(b -> b.display).filter(s -> s == bowlDisplay).count(), 1);
+        assertEquals(frame.getBowls().stream().map(b -> b.display).filter(s -> s == bowlDisplay).count(), 1);
     }
 
     @Test
@@ -68,7 +68,7 @@ class FrameAddingBowlTest {
         frame.addBowlToFrame(frame, bowlDisplay);
 
 
-        assertEquals(frame.bowls.stream().map(b -> b.display).filter(s -> s == bowlDisplay).count(), 1);
+        assertEquals(frame.getBowls().stream().map(b -> b.display).filter(s -> s == bowlDisplay).count(), 1);
     }
 
     @Test
@@ -79,7 +79,7 @@ class FrameAddingBowlTest {
         String bowlDisplay = "/";
 
         frame.addBowlToFrame(frame, bowlDisplay);
-        assertEquals(frame.bowls.stream().map(b -> b.display).filter(s -> s == bowlDisplay).count(), 1);
+        assertEquals(frame.getBowls().stream().map(b -> b.display).filter(s -> s == bowlDisplay).count(), 1);
     }
 
     @Test
@@ -101,7 +101,7 @@ class FrameAddingBowlTest {
         String bowlDisplay = "-";
 
         frame.addBowlToFrame(frame, bowlDisplay);
-        assertEquals(frame.bowls.stream().map(b -> b.display).filter(s -> s == bowlDisplay).count(), 1);
+        assertEquals(frame.getBowls().stream().map(b -> b.display).filter(s -> s == bowlDisplay).count(), 1);
     }
 
     @Test
@@ -111,7 +111,7 @@ class FrameAddingBowlTest {
         String bowlDisplay = "-";
 
         frame.addBowlToFrame(frame, bowlDisplay);
-        assertEquals(frame.bowls.stream().map(b -> b.display).filter(s -> s == bowlDisplay).count(), 1);
+        assertEquals(frame.getBowls().stream().map(b -> b.display).filter(s -> s == bowlDisplay).count(), 1);
     }
 
 }

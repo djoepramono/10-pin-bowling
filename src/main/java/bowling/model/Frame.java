@@ -8,11 +8,19 @@ import java.util.List;
 import static bowling.util.FrameUtil.*;
 
 public class Frame {
-    public List<Bowl> bowls = new ArrayList<Bowl>(); //todo change to private
-    public Integer maxPins = 10;
+    private List<Bowl> bowls = new ArrayList<Bowl>(); //todo change to private
+    private Integer maxPins = 10;
 
     public Frame(List<Bowl> bowls) {
         this.bowls = bowls;
+    }
+
+    public List<Bowl> getBowls() {
+        return this.bowls;
+    }
+
+    public Integer getMaxPins() {
+        return this.maxPins;
     }
 
     public void addBowlToFrame(Frame frame, String bowlDisplay) throws FrameException {

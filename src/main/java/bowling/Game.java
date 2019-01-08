@@ -26,7 +26,7 @@ public class Game {
 
     public Integer process(String entry) throws FrameException {
         if (frames.size() <= frameLimit) {
-            if (frame.bowls.size() < bowlPerFrame && (calculateTotalKnockedPins(frame) < frame.maxPins)) {
+            if (frame.getBowls().size() < bowlPerFrame && (calculateTotalKnockedPins(frame) < frame.getMaxPins())) {
                 frame.addBowlToFrame(frame, entry);
             } else {
                 frame = new Frame(new ArrayList<Bowl>());
@@ -69,7 +69,7 @@ public class Game {
 
     public List<Bowl> getAllBowls(List<Frame> frames) {
         return frames.stream()
-            .flatMap(f -> f.bowls.stream())
+            .flatMap(f -> f.getBowls().stream())
             .collect(Collectors.toList());
     }
 

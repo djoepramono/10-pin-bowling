@@ -18,7 +18,7 @@ public final class FrameUtil {
     }
 
     public static Integer calculateTotalKnockedPins(Frame frame) {
-        return frame.bowls.stream()
+        return frame.getBowls().stream()
             .map(bowl -> bowl.knockedPins)
             .reduce(0, (a, b) -> a + b);
     }
@@ -58,10 +58,10 @@ public final class FrameUtil {
                 case "/":
                     // only valid when:
                     // - if there's already a `-`
-                    if (frame.bowls.stream().map(b -> b.display).filter(s -> s.equals("-")).count() > 0) {
+                    if (frame.getBowls().stream().map(b -> b.display).filter(s -> s.equals("-")).count() > 0) {
                         isValid = true;
                         // - if there's already a integer in the frame
-                    } else if(frame.bowls.stream().filter(b -> isNumeric(b.display)).count() > 0) {
+                    } else if(frame.getBowls().stream().filter(b -> isNumeric(b.display)).count() > 0) {
                         isValid = true;
                     } else {
                         isValid = false;
@@ -69,7 +69,7 @@ public final class FrameUtil {
                     break;
                 case "X":
                     // valid if the frame is empty
-                    isValid = frame.bowls.isEmpty();
+                    isValid = frame.getBowls().isEmpty();
                     break;
                 default:
                     isValid = false;
