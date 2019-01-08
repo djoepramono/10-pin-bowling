@@ -25,17 +25,21 @@ public class Game {
     public void process(String entry) throws FrameException {
         System.out.println("-----");
         System.out.println("Process " + entry);
-        System.out.println("  no of frames : " + frames.size());
+
 
         if (frames.size() < frameLimit) {
-            frame.addBowlToFrame(frame, entry);
-
-            //todo maybe add frame first
             if ((frame.bowls.size() >= bowlPerFrame) || (frame.calculateTotalKnockedPins(frame) >= frame.maxPins)) {
                 frames.add(frame);
-                debug();
                 frame = new Frame(new ArrayList<Bowl>());
+                frame.addBowlToFrame(frame, entry);
+            } else {
+                frame.addBowlToFrame(frame, entry);
             }
+            System.out.println("  no of frames : " + frames.size());
+
+
+            debug();
+
         } else {
             // What should be done once the frame limit has been reached?
             // Throw an exception or just log an output?
