@@ -1,6 +1,6 @@
 package bowling.model;
 
-import bowling.helper.BowlingException;
+import bowling.helper.FrameException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +23,7 @@ public class Frame {
         return this.maxPins;
     }
 
-    public void addBowlToFrame(Frame frame, String bowlDisplay) throws BowlingException {
+    public void addBowlToFrame(Frame frame, String bowlDisplay) throws FrameException {
 
         Integer totalKnockedPinsInThisFrame = calculateTotalKnockedPins(frame);
 
@@ -47,13 +47,13 @@ public class Frame {
                 // (e.g. 9 followed by 4 in a frame)
                 // Should the program ignore bowl? or should the program throw an exception?
                 // In this case I choose to do the latter, in the absence of `Either` in Java
-                throw new BowlingException("exceeding pin limit - cannot add " + knockedPins + " to " + totalKnockedPinsInThisFrame);
+                throw new FrameException("exceeding pin limit - cannot add " + knockedPins + " to " + totalKnockedPinsInThisFrame);
             }
         } else {
             // What should happen if the bowl sequence is not valid? (e.g. /9)
             // Should it fail silently or should it throw an exception?
             // In this case I choose to do the latter
-            throw new BowlingException("invalid sequence - cannot add " + bowlDisplay + " to frame");
+            throw new FrameException("invalid sequence - cannot add " + bowlDisplay + " to frame");
         }
     }
 
