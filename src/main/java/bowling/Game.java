@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static bowling.util.FrameUtil.calculateTotalKnockedPins;
+
 public class Game {
 
     List<Frame> frames = new ArrayList<Frame>();
@@ -24,7 +26,7 @@ public class Game {
 
     public Integer process(String entry) throws FrameException {
         if (frames.size() <= frameLimit) {
-            if (frame.bowls.size() < bowlPerFrame && (frame.calculateTotalKnockedPins(frame) < frame.maxPins)) {
+            if (frame.bowls.size() < bowlPerFrame && (calculateTotalKnockedPins(frame) < frame.maxPins)) {
                 frame.addBowlToFrame(frame, entry);
             } else {
                 frame = new Frame(new ArrayList<Bowl>());
