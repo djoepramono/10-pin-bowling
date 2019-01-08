@@ -20,23 +20,22 @@ public class Game {
 
     public Game() {
         this.frameLimit = 12;
+        frames.add(frame);
     } //todo check later 10 or 11 or 12
 
     public void process(String entry) throws FrameException {
         System.out.println("-----");
         System.out.println("Process " + entry);
 
-
         if (frames.size() < frameLimit) {
-            if ((frame.bowls.size() >= bowlPerFrame) || (frame.calculateTotalKnockedPins(frame) >= frame.maxPins)) {
-                frames.add(frame);
-                frame = new Frame(new ArrayList<Bowl>());
+            if (frame.bowls.size() < bowlPerFrame && (frame.calculateTotalKnockedPins(frame) < frame.maxPins)) {
                 frame.addBowlToFrame(frame, entry);
             } else {
+                frame = new Frame(new ArrayList<Bowl>());
+                frames.add(frame);
                 frame.addBowlToFrame(frame, entry);
             }
             System.out.println("  no of frames : " + frames.size());
-
 
             debug();
 
