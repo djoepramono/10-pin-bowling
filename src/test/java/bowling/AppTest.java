@@ -46,7 +46,7 @@ class AppTest {
     }
 
     @Test
-    public void processEntriesOverMaximumFrames() throws FrameException {
+    public void processFirstSampleEntriesTest() throws FrameException {
 
         String[] entries = {"X","X","X","X","X","X","X","X","X","X","X","X"};
         App app = new App();
@@ -55,4 +55,24 @@ class AppTest {
         assertEquals((Integer) 300, score);
     }
 
+    @Test
+    public void processSecondSampleEntriesTest() throws FrameException {
+
+        String[] entries = {"9-","9-","9-","9-","9-","9-","9-","9-","9-","9-"};
+        App app = new App();
+        Integer score = app.process(entries);
+
+        assertEquals((Integer) 90, score);
+    }
+
+//    @Test
+//    public void processThirdSampleEntriesTest() throws FrameException {
+//
+//        String[] entries = {"5/","5/","5/","5/","5/","5/","5/","5/","5/","5/", "5"};
+//        App app = new App();
+//        Integer score = app.process(entries);
+//
+//        assertEquals((Integer) 150, score);
+//    }
+    
 }

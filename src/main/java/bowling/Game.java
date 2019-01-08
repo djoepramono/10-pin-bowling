@@ -35,7 +35,7 @@ public class Game {
                 frame.addBowlToFrame(frame, entry);
             }
 
-            debug();
+//            debug();
 
         } else {
             finished = true;
@@ -55,9 +55,9 @@ public class Game {
         for (var i = 0; i < bowls.size(); i++) {
             Bowl bowl = bowls.get(i);
 
-            if (bowl.display == "X") {
+            if (bowl.display.equals("X")) {
                 totalScore = totalScore + bowl.knockedPins + getBowlKnockedPinsFromArrayList(bowls, i+1) + getBowlKnockedPinsFromArrayList(bowls, i+2);
-            } else if (bowl.display == "/") {
+            } else if (bowl.display.equals("/")) {
                 totalScore = totalScore + bowl.knockedPins + getBowlKnockedPinsFromArrayList(bowls, i+1);
             } else {
                 totalScore += bowl.knockedPins;

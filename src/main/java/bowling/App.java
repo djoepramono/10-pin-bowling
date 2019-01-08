@@ -6,21 +6,23 @@ import java.util.stream.Stream;
 
 public class App {
     public static void main(String... args) {
-        // This game is built in such a way that it accepts a single character string
-        // Thus we need to get the arguments coming to this App into an array of String
-        String[] entries = Stream.of(args)
-            .flatMap(a -> Stream.of(a.split("(?!^)")))
-            .toArray(String[]::new);
-
         try {
-            Integer totalScore = process(entries);
+            Integer totalScore = process(args);
             System.out.println("The total score is " + totalScore);
         } catch(FrameException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    public static Integer process(String... entries) throws FrameException{
+    public static Integer process(String... args) throws FrameException{
+
+        // This game is built in such a way that it accepts a single character string
+        // Thus we need to get the arguments coming to this App into an array of String
+        String[] entries = Stream.of(args)
+            .flatMap(a -> Stream.of(a.split("(?!^)")))
+            .toArray(String[]::new);
+
+
         Integer totalScore = 0;
         Game game = new Game();
 
