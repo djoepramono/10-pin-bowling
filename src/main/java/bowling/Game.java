@@ -1,15 +1,12 @@
 package bowling;
 
-import java.util.Collections;
-import java.util.function.Function;
-import java.util.stream.Stream;
+import bowling.helper.FrameException;
+import bowling.model.Bowl;
+import bowling.model.Frame;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import bowling.model.Bowl;
-import bowling.model.Frame;
-import bowling.util.FrameUtil;
-import bowling.helper.FrameException;
 
 public class Game {
 
@@ -21,7 +18,7 @@ public class Game {
     Frame frame = new Frame(new ArrayList<Bowl>()); // needed for the first run
 
     public Game() {
-        this.frameLimit = 12; // 11 is correct
+        this.frameLimit = 10;
         frames.add(frame);
     } //todo check later 10 or 11 or 12
 
@@ -29,7 +26,7 @@ public class Game {
         System.out.println("-----");
         System.out.println("Process " + entry);
 
-        if (frames.size() < frameLimit) {
+        if (frames.size() <= frameLimit) {
             if (frame.bowls.size() < bowlPerFrame && (frame.calculateTotalKnockedPins(frame) < frame.maxPins)) {
                 frame.addBowlToFrame(frame, entry);
             } else {
