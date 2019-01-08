@@ -1,6 +1,7 @@
 package bowling;
 
 import java.util.Collections;
+import java.util.function.Function;
 import java.util.stream.Stream;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,7 @@ public class Game {
         frames.add(frame);
     } //todo check later 10 or 11 or 12
 
-    public void process(String entry) throws FrameException {
+    public Integer process(String entry) throws FrameException {
         System.out.println("-----");
         System.out.println("Process " + entry);
 
@@ -35,7 +36,6 @@ public class Game {
                 frames.add(frame);
                 frame.addBowlToFrame(frame, entry);
             }
-            System.out.println("  no of frames : " + frames.size());
 
             debug();
 
@@ -45,6 +45,8 @@ public class Game {
             // I choose to do the latter
             System.out.println("cannot add anymore frame. You have reached the limit of " + frameLimit + " frames");
         }
+
+        return frames.size();
     }
 
     public Integer getTotalScore(List<Bowl> bowls) {
