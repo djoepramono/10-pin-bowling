@@ -47,15 +47,15 @@ class GameTest {
         assertEquals((Integer) 16, game.getTotalScore(bowls));
     }
 
-//    @Test
-//    public void getTotalScoreWithUncompleteStrike() {
-//        List<Bowl> bowls = new ArrayList<>();
-//        bowls.add(new Bowl("X",10));
-//        bowls.add(new Bowl("1",1));
-//
-//        Game game = new Game();
-//        assertEquals((Integer) 16, game.getTotalScore(bowls));
-//    }
+    @Test
+    public void getTotalScoreWithUncompleteStrike() {
+        List<Bowl> bowls = new ArrayList<>();
+        bowls.add(new Bowl("X",10));
+        bowls.add(new Bowl("1",1));
+
+        Game game = new Game();
+        assertEquals((Integer) 12, game.getTotalScore(bowls));
+    }
 
     @Test
     public void getTotalScoreWithStrikes() {
