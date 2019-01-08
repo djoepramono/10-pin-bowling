@@ -15,17 +15,14 @@ public class Game {
     Integer frameLimit;
     Boolean finished = false;
 
-    Frame frame = new Frame(new ArrayList<Bowl>()); // needed for the first run
+    Frame frame = new Frame(new ArrayList<Bowl>());
 
     public Game() {
         this.frameLimit = 10;
         frames.add(frame);
-    } //todo check later 10 or 11 or 12
+    }
 
     public Integer process(String entry) throws FrameException {
-        System.out.println("-----");
-        System.out.println("Process " + entry);
-
         if (frames.size() <= frameLimit) {
             if (frame.bowls.size() < bowlPerFrame && (frame.calculateTotalKnockedPins(frame) < frame.maxPins)) {
                 frame.addBowlToFrame(frame, entry);
@@ -34,8 +31,6 @@ public class Game {
                 frames.add(frame);
                 frame.addBowlToFrame(frame, entry);
             }
-
-//            debug();
 
         } else {
             finished = true;
@@ -82,16 +77,5 @@ public class Game {
         } catch (IndexOutOfBoundsException e){
             return 0;
         }
-    }
-
-    private void debug() {
-        frames.forEach(
-            f -> {
-                System.out.println("Frame");
-                f.bowls.forEach(
-                    b -> System.out.println("  display: " + b.display + " knocks: " + b.knockedPins)
-                );
-            }
-        );
     }
 }

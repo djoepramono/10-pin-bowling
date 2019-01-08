@@ -21,7 +21,6 @@ dependencies {
 }
 
 jar {
-    baseName = 'bowling'
     version = '0.1.0'
 }
 

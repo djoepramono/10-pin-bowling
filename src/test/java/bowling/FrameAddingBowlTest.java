@@ -59,17 +59,13 @@ class FrameAddingBowlTest {
     }
 
     @Test
-    public void addingSpareIntoFrameWithAMiss()  {
+    public void addingSpareIntoFrameWithAMiss() throws FrameException {
         List<Bowl> bowls = new ArrayList<>();
         bowls.add(new Bowl("-",0));
         Frame frame = new Frame(bowls);
         String bowlDisplay = "/";
 
-        try {
-            frame.addBowlToFrame(frame, bowlDisplay);
-        } catch (FrameException e) {
-            System.out.println(e.getMessage());
-        }
+        frame.addBowlToFrame(frame, bowlDisplay);
 
 
         assertEquals(frame.bowls.stream().map(b -> b.display).filter(s -> s == bowlDisplay).count(), 1);

@@ -1,9 +1,9 @@
 package bowling.model;
 
-import java.util.Arrays;
+import bowling.helper.FrameException;
+
 import java.util.ArrayList;
 import java.util.List;
-import bowling.helper.FrameException;
 
 public class Frame {
     public List<Bowl> bowls = new ArrayList<Bowl>(); //todo change to private
@@ -39,7 +39,6 @@ public class Frame {
                 );
 
             } else {
-                System.out.println("exceeding pin limit");
                 // What should happen if the entered bowl is not valid?
                 // (e.g. 9 followed by 4 in a frame)
                 // Should the program ignore bowl? or should the program throw an exception?
@@ -47,8 +46,6 @@ public class Frame {
                 throw new FrameException("exceeding pin limit - cannot add " + knockedPins + " to " + frame.calculateTotalKnockedPins(frame));
             }
         } else {
-            System.out.println("invalid sequence");
-//            frame.bowls.forEach(b -> System.out.println(b.display + " " + b.knockedPins));
             // What should happen if the bowl sequence is not valid? (e.g. /9)
             // Should it fail silently or should it throw an exception?
             // In this case I choose to do the latter
@@ -81,7 +78,6 @@ public class Frame {
         Boolean isValid = false;
 
         if (isNumeric(bowlDisplay)) {
-            //ignore for now
             isValid = true;
         } else {
             switch(bowlDisplay) {
@@ -113,7 +109,8 @@ public class Frame {
         return isValid;
     }
 
-    // I can't believe this "PURE" function is not in a standard library ...
+    // Avoid throwing Exception whenever necessary
+    // Otherwise handle Exception as quickly as possible
     private static Boolean isNumeric(String str)
     {
         try {
