@@ -55,14 +55,15 @@ public class Game {
         for (var i = 0; i < bowls.size(); i++) {
             Bowl bowl = bowls.get(i);
 
-            if (bowl.display.equals("X")) {
-                totalScore = totalScore + bowl.knockedPins + getBowlKnockedPinsFromArrayList(bowls, i+1) + getBowlKnockedPinsFromArrayList(bowls, i+2);
-            } else if (bowl.display.equals("/")) {
-                totalScore = totalScore + bowl.knockedPins + getBowlKnockedPinsFromArrayList(bowls, i+1);
-            } else {
-                totalScore += bowl.knockedPins;
+            if (i < frameLimit * bowlPerFrame) {
+                if (bowl.display.equals("X")) {
+                    totalScore = totalScore + bowl.knockedPins + getBowlKnockedPinsFromArrayList(bowls, i+1) + getBowlKnockedPinsFromArrayList(bowls, i+2);
+                } else if (bowl.display.equals("/")) {
+                    totalScore = totalScore + bowl.knockedPins + getBowlKnockedPinsFromArrayList(bowls, i+1);
+                } else {
+                    totalScore += bowl.knockedPins;
+                }
             }
-
         }
 
         return totalScore;

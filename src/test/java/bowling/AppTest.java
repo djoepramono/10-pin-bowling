@@ -65,14 +65,14 @@ class AppTest {
         assertEquals((Integer) 90, score);
     }
 
-//    @Test
-//    public void processThirdSampleEntriesTest() throws FrameException {
-//
-//        String[] entries = {"5/","5/","5/","5/","5/","5/","5/","5/","5/","5/", "5"};
-//        App app = new App();
-//        Integer score = app.process(entries);
-//
-//        assertEquals((Integer) 150, score);
-//    }
-    
+    @Test
+    public void processThirdSampleEntriesTest() throws FrameException {
+
+        String[] entries = {"5/","5/","5/","5/","5/","5/","5/","5/","5/","5/", "5"};
+        App app = new App();
+        Integer score = app.process(entries);
+
+        assertEquals((Integer) 150, score);
+    }
+
 }

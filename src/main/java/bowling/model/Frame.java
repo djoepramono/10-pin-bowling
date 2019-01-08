@@ -92,7 +92,7 @@ public class Frame {
                 case "/":
                     // only valid when:
                     // - if there's already a `-`
-                    if (frame.bowls.stream().map(b -> b.display).filter(s -> s == "-").count() > 0) {
+                    if (frame.bowls.stream().map(b -> b.display).filter(s -> s.equals("-")).count() > 0) {
                         isValid = true;
                     // - if there's already a integer in the frame
                     } else if(frame.bowls.stream().filter(b -> isNumeric(b.display)).count() > 0) {
