@@ -1,6 +1,6 @@
 package bowling;
 
-import bowling.helper.FrameException;
+import bowling.helper.BowlingException;
 import bowling.model.Bowl;
 import bowling.model.Frame;
 
@@ -24,7 +24,7 @@ public class Game {
         frames.add(frame);
     }
 
-    public Integer process(String entry) throws FrameException {
+    public Integer process(String entry) throws BowlingException {
         if (frames.size() <= frameLimit) {
             if (frame.getBowls().size() < bowlPerFrame && (calculateTotalKnockedPins(frame) < frame.getMaxPins())) {
                 frame.addBowlToFrame(frame, entry);

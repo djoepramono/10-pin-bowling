@@ -1,6 +1,6 @@
 package bowling;
 
-import bowling.helper.FrameException;
+import bowling.helper.BowlingException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class AppTest {
 
     @Test
-    public void processSuccessfulEntries() throws FrameException {
+    public void processSuccessfulEntries() throws BowlingException {
 
         String[] entries = {"-","/","1","2","X","2"};
         App app = new App();
@@ -24,7 +24,7 @@ class AppTest {
         String[] entries = {"A","1","2","3"};
         App app = new App();
 
-        assertThrows(FrameException.class, () -> app.process(entries));
+        assertThrows(BowlingException.class, () -> app.process(entries));
     }
 
     @Test
@@ -33,7 +33,7 @@ class AppTest {
         String[] entries = {"/","1","2","3"};
         App app = new App();
 
-        assertThrows(FrameException.class, () -> app.process(entries));
+        assertThrows(BowlingException.class, () -> app.process(entries));
     }
 
     @Test
@@ -42,11 +42,11 @@ class AppTest {
         String[] entries = {"0","1","2","3"};
         App app = new App();
 
-        assertThrows(FrameException.class, () -> app.process(entries));
+        assertThrows(BowlingException.class, () -> app.process(entries));
     }
 
     @Test
-    public void processFirstSampleEntriesTest() throws FrameException {
+    public void processFirstSampleEntriesTest() throws BowlingException {
 
         String[] entries = {"X","X","X","X","X","X","X","X","X","X","X","X"};
         App app = new App();
@@ -56,7 +56,7 @@ class AppTest {
     }
 
     @Test
-    public void processSecondSampleEntriesTest() throws FrameException {
+    public void processSecondSampleEntriesTest() throws BowlingException {
 
         String[] entries = {"9-","9-","9-","9-","9-","9-","9-","9-","9-","9-"};
         App app = new App();
@@ -66,7 +66,7 @@ class AppTest {
     }
 
     @Test
-    public void processThirdSampleEntriesTest() throws FrameException {
+    public void processThirdSampleEntriesTest() throws BowlingException {
 
         String[] entries = {"5/","5/","5/","5/","5/","5/","5/","5/","5/","5/", "5"};
         App app = new App();

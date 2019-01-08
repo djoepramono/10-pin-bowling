@@ -1,6 +1,6 @@
 package bowling;
 
-import bowling.helper.FrameException;
+import bowling.helper.BowlingException;
 
 import java.util.stream.Stream;
 
@@ -9,12 +9,12 @@ public class App {
         try {
             Integer totalScore = process(args);
             System.out.println("The total score is " + totalScore);
-        } catch(FrameException e) {
+        } catch(BowlingException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    public static Integer process(String... args) throws FrameException{
+    public static Integer process(String... args) throws BowlingException {
 
         // This game is built in such a way that it accepts a single character string
         // Thus we need to get the arguments coming to this App into an array of String
@@ -31,7 +31,7 @@ public class App {
                 game.process(entries[i]);
             } else
             {
-                throw new FrameException("The entry " + entries[i] + " is not a valid entry");
+                throw new BowlingException("The entry " + entries[i] + " is not a valid entry");
             }
         }
 

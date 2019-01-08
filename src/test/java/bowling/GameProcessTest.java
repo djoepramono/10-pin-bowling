@@ -1,6 +1,6 @@
 package bowling;
 
-import bowling.helper.FrameException;
+import bowling.helper.BowlingException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class GameProcessTest {
 
     @Test
-    public void addingFrameIntoNewGame() throws FrameException {
+    public void addingFrameIntoNewGame() throws BowlingException {
         String bowlDisplay = "X";
 
         Game game = new Game();
@@ -17,7 +17,7 @@ class GameProcessTest {
     }
 
     @Test
-    public void addingFrameIntoGameWithExistingUnfinishedFrame() throws FrameException {
+    public void addingFrameIntoGameWithExistingUnfinishedFrame() throws BowlingException {
         String bowlDisplay = "2";
 
         Game game = new Game();
@@ -28,7 +28,7 @@ class GameProcessTest {
     }
 
     @Test
-    public void addingFrameIntoGameWithExistingFinishedFrame() throws FrameException {
+    public void addingFrameIntoGameWithExistingFinishedFrame() throws BowlingException {
         String bowlDisplay = "2";
 
         Game game = new Game();
@@ -40,7 +40,7 @@ class GameProcessTest {
     }
 
     @Test
-    public void addingFrameIntoGameWithExistingStrikeFrame() throws FrameException {
+    public void addingFrameIntoGameWithExistingStrikeFrame() throws BowlingException {
         String bowlDisplay = "2";
 
         Game game = new Game();

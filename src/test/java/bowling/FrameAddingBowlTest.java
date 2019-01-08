@@ -1,6 +1,6 @@
 package bowling;
 
-import bowling.helper.FrameException;
+import bowling.helper.BowlingException;
 import bowling.model.Bowl;
 import bowling.model.Frame;
 import org.junit.jupiter.api.Test;
@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class FrameAddingBowlTest {
 
     @Test
-    public void addingNumericIntoEmptyFrame() throws FrameException {
+    public void addingNumericIntoEmptyFrame() throws BowlingException {
         List<Bowl> bowls = new ArrayList<>();
         Frame frame = new Frame(bowls);
         String bowlDisplay = "3";
@@ -25,7 +25,7 @@ class FrameAddingBowlTest {
     }
 
     @Test
-    public void addingNumericIntoNonEmptyFrame() throws FrameException {
+    public void addingNumericIntoNonEmptyFrame() throws BowlingException {
         List<Bowl> bowls = new ArrayList<>();
         bowls.add(new Bowl("1",1));
         Frame frame = new Frame(bowls);
@@ -42,14 +42,14 @@ class FrameAddingBowlTest {
         Frame frame = new Frame(bowls);
         String bowlDisplay = "X";
 
-        assertThrows(FrameException.class, () -> {
+        assertThrows(BowlingException.class, () -> {
             frame.addBowlToFrame(frame, bowlDisplay);
 
         });
     }
 
     @Test
-    public void addingStrikeIntoEmptyFrame() throws FrameException {
+    public void addingStrikeIntoEmptyFrame() throws BowlingException {
         List<Bowl> bowls = new ArrayList<>();
         Frame frame = new Frame(bowls);
         String bowlDisplay = "X";
@@ -59,7 +59,7 @@ class FrameAddingBowlTest {
     }
 
     @Test
-    public void addingSpareIntoFrameWithAMiss() throws FrameException {
+    public void addingSpareIntoFrameWithAMiss() throws BowlingException {
         List<Bowl> bowls = new ArrayList<>();
         bowls.add(new Bowl("-",0));
         Frame frame = new Frame(bowls);
@@ -72,7 +72,7 @@ class FrameAddingBowlTest {
     }
 
     @Test
-    public void addingSpareIntoFrameWithKnockedPins() throws FrameException {
+    public void addingSpareIntoFrameWithKnockedPins() throws BowlingException {
         List<Bowl> bowls = new ArrayList<>();
         bowls.add(new Bowl("2",2));
         Frame frame = new Frame(bowls);
@@ -88,13 +88,13 @@ class FrameAddingBowlTest {
         Frame frame = new Frame(bowls);
         String bowlDisplay = "/";
 
-        assertThrows(FrameException.class, () -> {
+        assertThrows(BowlingException.class, () -> {
             frame.addBowlToFrame(frame, bowlDisplay);
         });
     }
 
     @Test
-    public void addingMissIntoNonEmptyFrame() throws FrameException {
+    public void addingMissIntoNonEmptyFrame() throws BowlingException {
         List<Bowl> bowls = new ArrayList<>();
         bowls.add(new Bowl("1",1));
         Frame frame = new Frame(bowls);
@@ -105,7 +105,7 @@ class FrameAddingBowlTest {
     }
 
     @Test
-    public void addingMissIntoEmptyFrame() throws FrameException {
+    public void addingMissIntoEmptyFrame() throws BowlingException {
         List<Bowl> bowls = new ArrayList<>();
         Frame frame = new Frame(bowls);
         String bowlDisplay = "-";
