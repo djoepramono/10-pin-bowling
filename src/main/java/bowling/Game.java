@@ -1,5 +1,6 @@
 package bowling;
 
+import java.util.Collections;
 import java.util.stream.Stream;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,6 @@ public class Game {
     List<Frame> frames = new ArrayList<Frame>();
     Integer bowlPerFrame = 2;
     Integer frameLimit;
-    Integer score;
 
     Frame frame = new Frame(new ArrayList<Bowl>()); // needed for the first run
 
@@ -30,6 +30,7 @@ public class Game {
         if (frames.size() < frameLimit) {
             frame.addBowlToFrame(frame, entry);
 
+            //todo maybe add frame first
             if ((frame.bowls.size() >= bowlPerFrame) || (frame.calculateTotalKnockedPins(frame) >= frame.maxPins)) {
                 frames.add(frame);
                 debug();
@@ -44,7 +45,44 @@ public class Game {
     }
 
     public Integer getTotalScore() {
-        return 100;
+        Integer totalScore = 0;
+
+        List<Bowl> bowls = getAllBowls(frames);
+        Collections.reverse(bowls);
+
+//        totalScore = bowls.stream()
+//            .map(b -> b.knockedPins)
+//            .reduce(0 ,(a,b) -> a+b);
+
+        for (var i = 0; i < bowls.size(); i++) {
+            Bowl bowl = bowls.get(i);
+            
+            if (
+                ( i+1 >= bowls.size() || bowls.get(i+1).display != "/") &&
+                ( i+2 >= bowls.size() || bowls.get(i+2).display != "X")
+            ) {
+                totalScore += bowl.knockedPins;
+            } else {
+                System.out.println("has modifier");
+                totalScore += (bowl.knockedPins * 2);
+            }
+        }
+
+        return totalScore;
+    }
+
+//    private Boolean isTheNextTwoBowlsHasModifier(ArrayList<Bowl> bowls, Integer index) {
+//        if (index < bowls.size() && (bowls.get(index+1).display == "/") || bowls.get(index+2).display == "X") {
+//            return true;
+//        } else {
+//            return false;
+//        }
+//    }
+
+    private List<Bowl> getAllBowls(List<Frame> frames) {
+        return frames.stream()
+            .flatMap(f -> f.bowls.stream())
+            .collect(Collectors.toList());
     }
 
     private void debug() {

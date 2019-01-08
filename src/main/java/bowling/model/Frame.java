@@ -6,7 +6,7 @@ import java.util.List;
 import bowling.helper.FrameException;
 
 public class Frame {
-    public List<Bowl> bowls = new ArrayList<Bowl>();
+    public List<Bowl> bowls = new ArrayList<Bowl>(); //todo change to private
     public Integer maxPins = 10;
 
     public Frame(List<Bowl> bowls) {
