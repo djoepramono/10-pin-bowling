@@ -23,3 +23,48 @@ points = 150
 
 ## Special Rule
 - No external library, except for testing
+
+# Setup
+
+Assuming you have set your Java and gradle setup, then you are good to go.
+Otherwise you can run the docker via
+
+```
+./docker-run.sh
+```
+
+The script will run a docker container and put you in it with the necessary files.
+
+This application is built on
+- Java 11
+- gradle 5.0
+
+## How to run
+
+The input
+
+```
+gradle run --args='5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5'
+```
+
+or alternatively you can run a script
+
+```
+./gradle-run-with-param.sh
+```
+
+## Testing
+
+It's pretty standard
+
+```
+gradle test
+```
+
+or
+
+```
+gradle clean test
+```
+
+Make sure that you have an internet connection as it needs to pull several depedencies
