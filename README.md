@@ -21,7 +21,7 @@ When scoring “X” indicates a strike, “/” indicates a spare, “-” indi
 - 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5 (21 rolls: 10 pairs of 5 and spare, with a final 5) = 10 frames * 15
 points = 150
 
-## Special Rule
+## Special rule
 - No external library, except for testing
 
 # Setup
@@ -53,7 +53,7 @@ or alternatively you can run a script
 ./gradle-run-with-param.sh
 ```
 
-## Testing
+## How to test
 
 It's pretty standard
 
@@ -67,4 +67,8 @@ or
 gradle clean test
 ```
 
-Make sure that you have an internet connection as it needs to pull several depedencies
+Make sure that you have an internet connection as it needs to pull several dependencies.
+
+## Documentations
+
+Documentations are available in `docs` folder. Maybe you can start with the [Solution Approach](./docs/solution-approach.md)
