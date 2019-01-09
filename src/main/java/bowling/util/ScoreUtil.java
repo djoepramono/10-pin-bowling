@@ -1,8 +1,10 @@
 package bowling.util;
 
 import bowling.model.Bowl;
+import bowling.model.Frame;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public final class ScoreUtil {
 
@@ -24,6 +26,12 @@ public final class ScoreUtil {
         }
 
         return totalScore;
+    }
+
+    public static List<Bowl> getAllBowls(List<Frame> frames) {
+        return frames.stream()
+            .flatMap(f -> f.getBowls().stream())
+            .collect(Collectors.toList());
     }
 
     private static Integer getBowlKnockedPinsFromArrayList(List<Bowl> bowls, Integer i) {

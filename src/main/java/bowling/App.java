@@ -4,6 +4,7 @@ import bowling.helper.BowlingException;
 
 import java.util.stream.Stream;
 
+import static bowling.util.ScoreUtil.getAllBowls;
 import static bowling.util.ScoreUtil.getTotalScore;
 
 public class App {
@@ -37,7 +38,7 @@ public class App {
             }
         }
 
-        totalScore = getTotalScore(game.getAllBowls(game.frames), game.bowlPerFrame * game.frameLimit);
+        totalScore = getTotalScore(getAllBowls(game.frames), game.bowlPerFrame * game.frameLimit);
 
         return totalScore;
     }

@@ -44,11 +44,4 @@ public class Game {
 
         return frames.size();
     }
-
-
-    public List<Bowl> getAllBowls(List<Frame> frames) {
-        return frames.stream()
-            .flatMap(f -> f.getBowls().stream())
-            .collect(Collectors.toList());
-    }
 }
