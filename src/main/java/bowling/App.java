@@ -8,7 +8,7 @@ public class App {
     public static void main(String... args) {
         try {
             Integer totalScore = process(args);
-            System.out.println("The total score is " + totalScore);
+            System.out.println("ERROR: The total score is " + totalScore);
         } catch(BowlingException e) {
             System.out.println(e.getMessage());
         }
@@ -31,7 +31,7 @@ public class App {
                 game.process(entries[i]);
             } else
             {
-                throw new BowlingException("The entry " + entries[i] + " is not a valid entry");
+                throw new BowlingException("ERROR: The entry " + entries[i] + " is not a valid entry");
             }
         }
 

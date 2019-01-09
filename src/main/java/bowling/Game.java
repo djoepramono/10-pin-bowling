@@ -39,7 +39,7 @@ public class Game {
             // What should be done once the frame limit has been reached?
             // Throw an exception or just log an output?
             // I choose to do the latter
-            System.out.println("cannot add anymore frame. You have reached the limit of " + frameLimit + " frames");
+            System.out.println("WARNING: cannot add anymore frame. You have reached the limit of " + frameLimit + " frames");
         }
 
         return frames.size();
