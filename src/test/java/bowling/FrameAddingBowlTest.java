@@ -16,8 +16,7 @@ class FrameAddingBowlTest {
 
     @Test
     public void addingNumericIntoEmptyFrame() throws FrameException {
-        List<Bowl> bowls = new ArrayList<>();
-        Frame frame = new Frame(bowls);
+        Frame frame = new Frame();
         String bowlDisplay = "3";
 
         frame.addBowlToFrame(frame, bowlDisplay);
@@ -26,9 +25,8 @@ class FrameAddingBowlTest {
 
     @Test
     public void addingNumericIntoNonEmptyFrame() throws FrameException {
-        List<Bowl> bowls = new ArrayList<>();
-        bowls.add(new Bowl("1",1));
-        Frame frame = new Frame(bowls);
+        Frame frame = new Frame();
+        frame.getBowls().add(new Bowl("1",1));
         String bowlDisplay = "3";
 
         frame.addBowlToFrame(frame, bowlDisplay);
@@ -38,8 +36,8 @@ class FrameAddingBowlTest {
 
     @Test
     public void addingStrikeIntoNonEmptyFrame() {
-        List<Bowl> bowls = Arrays.asList(new Bowl("1",1));
-        Frame frame = new Frame(bowls);
+        Frame frame = new Frame();
+        frame.getBowls().add(new Bowl("1",1));
         String bowlDisplay = "X";
 
         assertThrows(FrameException.class, () -> {
@@ -50,8 +48,7 @@ class FrameAddingBowlTest {
 
     @Test
     public void addingStrikeIntoEmptyFrame() throws FrameException {
-        List<Bowl> bowls = new ArrayList<>();
-        Frame frame = new Frame(bowls);
+        Frame frame = new Frame();
         String bowlDisplay = "X";
 
         frame.addBowlToFrame(frame, bowlDisplay);
@@ -60,9 +57,8 @@ class FrameAddingBowlTest {
 
     @Test
     public void addingSpareIntoFrameWithAMiss() throws FrameException {
-        List<Bowl> bowls = new ArrayList<>();
-        bowls.add(new Bowl("-",0));
-        Frame frame = new Frame(bowls);
+        Frame frame = new Frame();
+        frame.getBowls().add(new Bowl("-",0));
         String bowlDisplay = "/";
 
         frame.addBowlToFrame(frame, bowlDisplay);
@@ -73,9 +69,8 @@ class FrameAddingBowlTest {
 
     @Test
     public void addingSpareIntoFrameWithKnockedPins() throws FrameException {
-        List<Bowl> bowls = new ArrayList<>();
-        bowls.add(new Bowl("2",2));
-        Frame frame = new Frame(bowls);
+        Frame frame = new Frame();
+        frame.getBowls().add(new Bowl("2",2));
         String bowlDisplay = "/";
 
         frame.addBowlToFrame(frame, bowlDisplay);
@@ -84,8 +79,7 @@ class FrameAddingBowlTest {
 
     @Test
     public void addingSpareIntoEmptyFrame() {
-        List<Bowl> bowls = new ArrayList<>();
-        Frame frame = new Frame(bowls);
+        Frame frame = new Frame();
         String bowlDisplay = "/";
 
         assertThrows(FrameException.class, () -> {
@@ -95,9 +89,8 @@ class FrameAddingBowlTest {
 
     @Test
     public void addingMissIntoNonEmptyFrame() throws FrameException {
-        List<Bowl> bowls = new ArrayList<>();
-        bowls.add(new Bowl("1",1));
-        Frame frame = new Frame(bowls);
+        Frame frame = new Frame();
+        frame.getBowls().add(new Bowl("1",1));
         String bowlDisplay = "-";
 
         frame.addBowlToFrame(frame, bowlDisplay);
@@ -106,12 +99,10 @@ class FrameAddingBowlTest {
 
     @Test
     public void addingMissIntoEmptyFrame() throws FrameException {
-        List<Bowl> bowls = new ArrayList<>();
-        Frame frame = new Frame(bowls);
+        Frame frame = new Frame();
         String bowlDisplay = "-";
 
         frame.addBowlToFrame(frame, bowlDisplay);
         assertEquals(frame.getBowls().stream().map(b -> b.display).filter(s -> s == bowlDisplay).count(), 1);
     }
-
 }

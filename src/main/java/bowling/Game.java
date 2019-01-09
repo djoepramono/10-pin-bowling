@@ -15,7 +15,7 @@ public class Game {
     public final Integer bowlPerFrame = 2;
     public final Integer frameLimit = 10;
 
-    private Frame frame = new Frame(new ArrayList<Bowl>());
+    private Frame frame = new Frame();
 
     public Game() {
         frames.add(frame);
@@ -26,7 +26,7 @@ public class Game {
             if (frame.getBowls().size() < bowlPerFrame && (calculateTotalKnockedPins(frame.getBowls()) < frame.getMaxPins())) {
                 frame.addBowlToFrame(frame, entry);
             } else {
-                frame = new Frame(new ArrayList<Bowl>());
+                frame = new Frame();
                 frames.add(frame);
                 frame.addBowlToFrame(frame, entry);
             }
