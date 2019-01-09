@@ -9,7 +9,7 @@ import static bowling.util.FrameUtil.*;
 
 public class Frame {
     private List<Bowl> bowls = new ArrayList<Bowl>();
-    private Integer maxPins = 10;
+    public final Integer maxPins = 10;
 
     public Frame(List<Bowl> bowls) {
         this.bowls = bowls;

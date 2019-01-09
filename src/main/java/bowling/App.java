@@ -11,9 +11,9 @@ public class App {
     public static void main(String... args) {
         try {
             Integer totalScore = process(args);
-            System.out.println("ERROR: The total score is " + totalScore);
+            System.out.println("The total score is " + totalScore);
         } catch(BowlingException e) {
-            System.out.println(e.getMessage());
+            System.out.println("ERROR: " + e.getMessage());
         }
     }
 
