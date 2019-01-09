@@ -1,4 +1,4 @@
-# Architectural decision
+# Architectural Decision
 
 We can build this bowling application in many different ways. However I'd like to try to adhere to below fundamentals as much as possible.
 
@@ -6,11 +6,11 @@ We can build this bowling application in many different ways. However I'd like t
 
 Pure functions are good. It has referential transparency aspect. For the same input you given to a function, it should always return the same result. This makes the application easy to reason about, as it has no side-effects.
 
-For example, the class methods should relies on the parameters to do its job. Or at the very least try to access the class property less. Especially if the properties are mutable.
+For example, the class methods should relies on the parameters to do its job. Or at the very least try to access the class property less. Especially if the properties are mutable. This also enables the methods to be easily moved to another class if necessary.
 
 This also means that, exceptions should be used sparingly. If you are using a function that throws an exception. It'll be good to resolve the exception as quickly as possible.
 
-Last but not least, try to write a function that returns something.
+Last but not least, try to write a function that returns something. This way you can keep the referential transparency and you can even chain functions.
 
 ## Towards Microservices
 

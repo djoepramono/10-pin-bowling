@@ -45,39 +45,10 @@ public class Game {
         return frames.size();
     }
 
-    public Integer getTotalScore(List<Bowl> bowls) { //todo score util?
-        Integer totalScore = 0;
-
-
-        for (var i = 0; i < bowls.size(); i++) {
-            Bowl bowl = bowls.get(i);
-
-            if (i < frameLimit * bowlPerFrame) {
-                if (bowl.display.equals("X")) {
-                    totalScore = totalScore + bowl.knockedPins + getBowlKnockedPinsFromArrayList(bowls, i+1) + getBowlKnockedPinsFromArrayList(bowls, i+2);
-                } else if (bowl.display.equals("/")) {
-                    totalScore = totalScore + bowl.knockedPins + getBowlKnockedPinsFromArrayList(bowls, i+1);
-                } else {
-                    totalScore += bowl.knockedPins;
-                }
-            }
-        }
-
-        return totalScore;
-    }
-
 
     public List<Bowl> getAllBowls(List<Frame> frames) {
         return frames.stream()
             .flatMap(f -> f.getBowls().stream())
             .collect(Collectors.toList());
-    }
-
-    private Integer getBowlKnockedPinsFromArrayList(List<Bowl> bowls, Integer i) {
-        try {
-            return bowls.get(i).knockedPins;
-        } catch (IndexOutOfBoundsException e){
-            return 0;
-        }
     }
 }

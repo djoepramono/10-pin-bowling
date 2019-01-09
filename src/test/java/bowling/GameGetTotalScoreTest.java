@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static bowling.util.ScoreUtil.getTotalScore;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GameGetTotalScoreTest {
@@ -16,9 +17,9 @@ class GameGetTotalScoreTest {
         bowls.add(new Bowl("1",1));
         bowls.add(new Bowl("/",9));
         bowls.add(new Bowl("2",2));
+        Integer countLimit = 20;
 
-        Game game = new Game();
-        assertEquals((Integer) 14, game.getTotalScore(bowls));
+        assertEquals((Integer) 14, getTotalScore(bowls,countLimit));
     }
 
     @Test
@@ -29,9 +30,9 @@ class GameGetTotalScoreTest {
         bowls.add(new Bowl("2",2));
         bowls.add(new Bowl("/",8));
         bowls.add(new Bowl("3",3));
+        Integer countLimit = 20;
 
-        Game game = new Game();
-        assertEquals((Integer) 28, game.getTotalScore(bowls));
+        assertEquals((Integer) 28, getTotalScore(bowls, countLimit));
     }
 
     @Test
@@ -40,9 +41,9 @@ class GameGetTotalScoreTest {
         bowls.add(new Bowl("X",10));
         bowls.add(new Bowl("1",1));
         bowls.add(new Bowl("2",2));
+        Integer countLimit = 20;
 
-        Game game = new Game();
-        assertEquals((Integer) 16, game.getTotalScore(bowls));
+        assertEquals((Integer) 16, getTotalScore(bowls, countLimit));
     }
 
     @Test
@@ -50,9 +51,9 @@ class GameGetTotalScoreTest {
         List<Bowl> bowls = new ArrayList<>();
         bowls.add(new Bowl("X",10));
         bowls.add(new Bowl("1",1));
+        Integer countLimit = 20;
 
-        Game game = new Game();
-        assertEquals((Integer) 12, game.getTotalScore(bowls));
+        assertEquals((Integer) 12, getTotalScore(bowls, countLimit));
     }
 
     @Test
@@ -62,9 +63,9 @@ class GameGetTotalScoreTest {
         bowls.add(new Bowl("X",10));
         bowls.add(new Bowl("2",2));
         bowls.add(new Bowl("1",1));
+        Integer countLimit = 20;
 
-        Game game = new Game();
-        assertEquals((Integer) 38, game.getTotalScore(bowls));
+        assertEquals((Integer) 38, getTotalScore(bowls, countLimit));
     }
 
     @Test
@@ -74,9 +75,9 @@ class GameGetTotalScoreTest {
         bowls.add(new Bowl("X",10));
         bowls.add(new Bowl("X",10));
         bowls.add(new Bowl("X",10));
+        Integer countLimit = 20;
 
-        Game game = new Game();
-        assertEquals((Integer) 90, game.getTotalScore(bowls));
+        assertEquals((Integer) 90, getTotalScore(bowls, countLimit));
     }
 
     @Test
@@ -86,9 +87,9 @@ class GameGetTotalScoreTest {
         bowls.add(new Bowl("1",1));
         bowls.add(new Bowl("2",2));
         bowls.add(new Bowl("3",3));
+        Integer countLimit = 20;
 
-        Game game = new Game();
-        assertEquals((Integer) 6, game.getTotalScore(bowls));
+        assertEquals((Integer) 6, getTotalScore(bowls, countLimit));
     }
 
     @Test
@@ -98,9 +99,9 @@ class GameGetTotalScoreTest {
         bowls.add(new Bowl("1",1));
         bowls.add(new Bowl("-",0));
         bowls.add(new Bowl("3",3));
+        Integer countLimit = 20;
 
-        Game game = new Game();
-        assertEquals((Integer) 4, game.getTotalScore(bowls));
+        assertEquals((Integer) 4, getTotalScore(bowls, countLimit));
     }
 
     @Test
@@ -111,8 +112,22 @@ class GameGetTotalScoreTest {
         bowls.add(new Bowl("X",10));
         bowls.add(new Bowl("-",0));
         bowls.add(new Bowl("2",2));
+        Integer countLimit = 20;
 
-        Game game = new Game();
-        assertEquals((Integer) 34, game.getTotalScore(bowls));
+        assertEquals((Integer) 34, getTotalScore(bowls, countLimit));
+    }
+
+    @Test
+    public void getTotalScoreWithExceededcountLimit() {
+        List<Bowl> bowls = new ArrayList<>();
+        bowls.add(new Bowl("1",1));
+        bowls.add(new Bowl("2",2));
+        bowls.add(new Bowl("X",10));
+        bowls.add(new Bowl("3",3));
+        bowls.add(new Bowl("4",4));
+        bowls.add(new Bowl("5",5));
+        Integer countLimit = 3;
+
+        assertEquals((Integer) 20, getTotalScore(bowls, countLimit));
     }
 }

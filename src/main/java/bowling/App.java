@@ -4,6 +4,8 @@ import bowling.helper.BowlingException;
 
 import java.util.stream.Stream;
 
+import static bowling.util.ScoreUtil.getTotalScore;
+
 public class App {
     public static void main(String... args) {
         try {
@@ -35,12 +37,12 @@ public class App {
             }
         }
 
-        totalScore = game.getTotalScore(game.getAllBowls(game.frames));
+        totalScore = getTotalScore(game.getAllBowls(game.frames), game.bowlPerFrame * game.frameLimit);
 
         return totalScore;
     }
 
-    public static Boolean validateStringEntry(String entry) {
+    private static Boolean validateStringEntry(String entry) {
         return entry.matches("^[1-9|X|\\/|-]$");
     }
 }
