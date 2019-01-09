@@ -26,8 +26,10 @@ Just like any other game, it needs to store a state. For a simple game like this
 
 ## Logging
 
-Writing to standard out for logging is good. However simply logging without a structure is not. Written logs generally can be categorised as one of these 3 things: info, warning, and error. Thus it's better to flag them appropriately.
+Writing to standard out for logging is good. However simply logging without a structure is not. Written logs generally can be categorised as one of these 3 things: info, warning, and error. Thus it's better to group them appropriately.
 
 For example for an exception logging, we include `ERROR` as part of the log message. This way when we need to visit the log, one day. We can find the errors or warnings easier.
 
 Do not log out some error as `ERROR` and some others as `FAILURE`, unless you have a reason to distinguish them.
+
+What does this lead up to? Try to have a single error handler in the application.

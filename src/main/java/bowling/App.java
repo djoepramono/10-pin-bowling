@@ -34,7 +34,7 @@ public class App {
                 game.process(entries[i]);
             } else
             {
-                throw new BowlingException("ERROR: The entry " + entries[i] + " is not a valid entry");
+                throw new BowlingException("The entry " + entries[i] + " is not a valid entry");
             }
         }
 
